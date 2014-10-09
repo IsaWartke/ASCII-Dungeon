@@ -19,7 +19,7 @@ namespace ConsoleApplication1
             //    map.NextRound();
             //    map.Flush();
 
-          string[] lines = File.ReadAllLines("Map.txt");
+          string[] lines = File.ReadAllLines("Maps/Map.txt");
 
           for (int i = 0; i < lines.Length; i++ )
           {
