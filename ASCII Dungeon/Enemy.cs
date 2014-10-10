@@ -25,7 +25,7 @@ namespace ASCII_Dungeon
 
         protected abstract void WalkSteps(); // gehe vorwearts 
 
-        protected void RotationStep(); // oder drehe
+        protected abstract void RotationStep(); // oder drehe
 
         protected abstract void Attack(); // greife an ziehe Held 1 Leben ab + Angriff Animation
 
