@@ -6,45 +6,11 @@ using System.Threading.Tasks;
 
 namespace ASCII_Dungeon
 {
-    abstract class Enemy
+    abstract class Enemy : Character
     {
         protected enum BehaviorStatus { Death, Walk, HaveBreak, Fight, Rotation };
 
-        protected char[] Look = new char[4];
-        protected BehaviorStatus behaviourStatus;
-        protected byte Life;
-        public byte EnemyGetDamage = 0;
-        protected char Richtung = 'r';
 
-
-
-        protected abstract char EnemyBody(char richtung); // wie sieht der Feind aus
-
-        protected abstract void CollisionDetection(char richtung); // wo sind Weande, Held, wohin kann ich gehen
-
-        protected abstract void WalkSteps(); // gehe vorwearts 
-
-        protected abstract void RotationStep(char richtung); // oder drehe
-
-        protected abstract void Attack(); // greife an ziehe Held 1 Leben ab + Angriff Animation
-
-        protected void EnemyLife(byte getDamage) // Wird mein leben verringert setze es runter oder behaviourStatus auf Death
-        {
-            Life -= getDamage;
-
-            if (Life <= 0)
-            {
-                behaviourStatus = BehaviorStatus.Death;
-            }
-        }
-
-        public abstract void PlayEnemy();
-
-
-
-
-
-
-
+        protected override abstract void Move();
     }
 }
