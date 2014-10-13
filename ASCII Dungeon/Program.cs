@@ -13,21 +13,14 @@ namespace ConsoleApplication1
         static void Main(string[] args)
         {
             Console.CursorVisible = false;
+            Map map = new Map("Maps/Map.txt");
+            map.FullRender();
 
-          string[] lines = File.ReadAllLines("Maps/Map.txt");
-
-          for (int i = 0; i < lines.Length; i++ )
-          {
-              Console.WriteLine(lines[i]);
-          }
-
-
-          Sound ton = new Sound();
-          ton.BackgroundSound();
-
-
-              Console.ReadKey();
-
+            while(true)
+            {
+                map.Render();
+                Console.ReadKey();
+            }
         }
     }
 }
