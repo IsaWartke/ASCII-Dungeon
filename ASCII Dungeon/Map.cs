@@ -2,86 +2,59 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 
-namespace ConsoleApplication1
+namespace ASCII_Dungeon
 {
     public class Map
     {
-        private readonly Tile[,] tiles;
+        private char[,] _content;
 
-        public Map(int width, int height)
+        private List<Vector2> _dirtyFields = new List<Vector2>();
+
+        public Map(string fileName)
         {
-            tiles = new Tile[width, height];
-            for (int x = 0; x <= tiles.GetUpperBound(0); x++)
+            LoadFromFile(fileName);
+        }
+
+        public void LoadFromFile(string fileName)
+        {
+            string[] lines = File.ReadAllLines(fileName);
+            _content = new char[lines[0].Length, lines.Length];
+            for (int x = 0; x <= _content.GetUpperBound(0); x++)
             {
-                for (int y = 0; y <= tiles.GetUpperBound(1); y++)
+                for (int y = 0; y <= _content.GetUpperBound(1); y++)
                 {
-                    tiles[x, y] = new Tile(x, y, this);
+                    _content[x, y] = lines[y][x];
                 }
             }
-        
+        }
+
+        public void FullRender()
+        {
+            for (int x = 0; x <= _content.GetUpperBound(0); x++)
+            {
+                for (int y = 0; y <= _content.GetUpperBound(1); y++)
+                {
+                    Console.SetCursorPosition(x, y);
+                    Console.Write(_content[x, y]);
+                }
+            }
         }
 
         public void Render()
         {
-            for (int x = 0; x <= tiles.GetUpperBound(0); x++)
+            foreach(Vector2 pos in _dirtyFields)
             {
-                for (int y = 0; y <= tiles.GetUpperBound(1); y++)
-                {
-                    Console.SetCursorPosition(x, y);
-                    tiles[x, y].Render();
-                }
+                Console.SetCursorPosition(pos.X, pos.Y);
+                Console.Write(_content[pos.X, pos.Y]);
             }
+            _dirtyFields.Clear();
         }
 
-        public Tile GetTile(int x, int y)
+        public void MarkAsDirty(Vector2 position)
         {
-            return tiles[x, y];
-        }
-
-        public void NextRound()
-        {
-            for (int x = 0; x <= tiles.GetUpperBound(0); x++)
-            {
-                for (int y = 0; y <= tiles.GetUpperBound(1); y++)
-                {
-                    tiles[x, y].NextRound();
-                }
-            }
-        }
-
-        public void Flush()
-        {
-            for (int x = 0; x <= tiles.GetUpperBound(0); x++)
-            {
-                for (int y = 0; y <= tiles.GetUpperBound(1); y++)
-                {
-                    tiles[x, y].Flush();
-                }
-            }
-        }
-
-        public void InitLvl()
-        {
-            for (int x = 0; x <= tiles.GetUpperBound(0); x++)
-            {
-                for (int y = 0; y <= tiles.GetUpperBound(1); y++)
-                {
-                    if (x == 0 || y == 0 ||
-                        x == tiles.GetUpperBound(0) || y == tiles.GetUpperBound(1))
-                    {
-                        tiles[x, y].State = 1;
-                    }
-                    else if (x == tiles.GetUpperBound(0) / 2 && y == tiles.GetUpperBound(1) / 2)
-                    {
-                        tiles[x, y].State = 2;
-                    }
-                    else
-                    {
-                        tiles[x, y].State = 0;
-                    }
-                }
-            }
+            _dirtyFields.Add(position);
         }
     }
 }
