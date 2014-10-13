@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using ASCII_Dungeon;
 
 
 namespace ConsoleApplication1
@@ -12,12 +13,6 @@ namespace ConsoleApplication1
         static void Main(string[] args)
         {
             Console.CursorVisible = false;
-            //Map map = new Map(9, 9);
-
-            //map.InitLvl();
-            //map.Render();
-            //    map.NextRound();
-            //    map.Flush();
 
           string[] lines = File.ReadAllLines("Maps/Map.txt");
 
@@ -25,6 +20,11 @@ namespace ConsoleApplication1
           {
               Console.WriteLine(lines[i]);
           }
+
+
+          Sound ton = new Sound();
+          ton.BackgroundSound();
+
 
               Console.ReadKey();
 
