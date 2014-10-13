@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enemy.cs" />
+    <Compile Include="Input.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="PlayerController.cs" />
     <Compile Include="Program.cs" />
