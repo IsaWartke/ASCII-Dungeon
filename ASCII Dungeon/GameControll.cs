@@ -2,32 +2,37 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.IO;
-using ASCII_Dungeon;
 
 
 namespace ConsoleApplication1
 {
     class Program
     {
+
         static void Main(string[] args)
         {
             Console.CursorVisible = false;
 
-          string[] lines = File.ReadAllLines("Maps/Map.txt");
+            Map map = new Map(19, 19); //Größe des Levels
 
-          for (int i = 0; i < lines.Length; i++ )
-          {
-              Console.WriteLine(lines[i]);
-          }
+            PlayerController control = new PlayerController(3, 3, map); // Startposition des Spielers
 
+            control.OnKeyPress += control.HandleKey;
 
-          Sound ton = new Sound();
-          ton.BackgroundSound();
+            map.InitLevel();
+            control.InitPlayer();
+            map.Render();
 
-
-              Console.ReadKey();
+            while (true)
+            {
+                if (!control.MoveCheck())   // erst weitermachen, wenn eine Taste gedrückt wurde
+                    continue;
+                map.NextRound();
+                map.Flush();
+                map.Render();
+            }
 
         }
+
     }
 }

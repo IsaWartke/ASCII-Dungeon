@@ -59,6 +59,7 @@
     <Compile Include="Character.cs" />
     <Compile Include="CollisionDetection.cs" />
     <Compile Include="Enemy.cs" />
+    <Compile Include="Input.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="PlayerController.cs" />
     <Compile Include="GameControll.cs" />
