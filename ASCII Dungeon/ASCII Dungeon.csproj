@@ -56,14 +56,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Character.cs" />
+    <Compile Include="CollisionDetection.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="PlayerController.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="GameControll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Render.cs" />
     <Compile Include="Sound.cs" />
     <Compile Include="Tile.cs" />
-    <Compile Include="Voegel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
