@@ -14,18 +14,17 @@ namespace ASCII_Dungeon
         protected BehaviorStatus behaviourStatus;
         protected byte Life;
         public byte EnemyGetDamage = 0;
-        protected byte HeroGetDamage;
         protected char Richtung = 'r';
 
 
 
         protected abstract char EnemyBody(char richtung); // wie sieht der Feind aus
 
-        protected abstract void CollisionDetection(); // wo sind Weande, Held, wohin kann ich gehen
+        protected abstract void CollisionDetection(char richtung); // wo sind Weande, Held, wohin kann ich gehen
 
         protected abstract void WalkSteps(); // gehe vorwearts 
 
-        protected abstract void RotationStep(); // oder drehe
+        protected abstract void RotationStep(char richtung); // oder drehe
 
         protected abstract void Attack(); // greife an ziehe Held 1 Leben ab + Angriff Animation
 
