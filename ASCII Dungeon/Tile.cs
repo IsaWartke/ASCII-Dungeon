@@ -18,7 +18,7 @@ namespace ConsoleApplication1
         {
             int X = x;
             int Y = y;
-            Map _map = map;        
+            Map _map = map;
         }
 
         public void Render()
@@ -35,9 +35,24 @@ namespace ConsoleApplication1
                         Console.Write("x");
                     }
                     break;
-                case 2:
+                case 21: // Spieler nach oben gerichtet
                     {
-                        Console.Write("H");
+                        Console.Write("O");
+                    }
+                    break;
+                case 22: // Spieler nach unten gerichtet
+                    {
+                        Console.Write("U");
+                    }
+                    break;
+                case 23: // Spieler nach links gerichtet
+                    {
+                        Console.Write("L");
+                    }
+                    break;
+                case 24: // Spieler nach rechts gerichtet
+                    {
+                        Console.Write("R");
                     }
                     break;
                 default:
@@ -54,9 +69,12 @@ namespace ConsoleApplication1
         }
 
         public void NextRound()
-        { 
-        
+        {
+            if (State == 1)
+            {
+                NextRoundState = 1;
+            }
         }
-        
+
     }
 }

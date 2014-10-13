@@ -19,7 +19,7 @@ namespace ConsoleApplication1
                     tiles[x, y] = new Tile(x, y, this);
                 }
             }
-        
+
         }
 
         public void Render()
@@ -61,7 +61,7 @@ namespace ConsoleApplication1
             }
         }
 
-        public void InitLvl()
+        public void InitLevel()
         {
             for (int x = 0; x <= tiles.GetUpperBound(0); x++)
             {
@@ -71,10 +71,6 @@ namespace ConsoleApplication1
                         x == tiles.GetUpperBound(0) || y == tiles.GetUpperBound(1))
                     {
                         tiles[x, y].State = 1;
-                    }
-                    else if (x == tiles.GetUpperBound(0) / 2 && y == tiles.GetUpperBound(1) / 2)
-                    {
-                        tiles[x, y].State = 2;
                     }
                     else
                     {
