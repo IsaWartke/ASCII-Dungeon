@@ -14,10 +14,15 @@ namespace ConsoleApplication1
         {
             Console.CursorVisible = false;
             Map map = new Map("Maps/Map.txt");
+            Input control = new Input();
             map.FullRender();
 
             while(true)
             {
+                if (!control.KeyStroke())
+                {
+                    continue;
+                }
                 map.Render();
                 Console.ReadKey();
             }
