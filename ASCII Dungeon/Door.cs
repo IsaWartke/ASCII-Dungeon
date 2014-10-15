@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ASCII_Dungeon
 {
-    class Door
+    class Door : GameObject
     {
     }
 }

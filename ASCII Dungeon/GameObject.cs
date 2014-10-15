@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace ASCII_Dungeon
 {
-    class Wall : GameObject
+    abstract class GameObject
     {
+
+        protected abstract void Move();
+
+        public void Render() { }
     }
 }

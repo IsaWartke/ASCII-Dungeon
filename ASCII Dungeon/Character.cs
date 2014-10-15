@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ASCII_Dungeon
 {
-    abstract class Character
+    abstract class Character : GameObject
     {
         protected char[] Appearance = new char[4];
         protected byte LifePoints;
@@ -17,9 +17,12 @@ namespace ASCII_Dungeon
 
 
 
-        protected abstract void Move();
 
-        protected void IsAttacked(byte attack_points) { }
+        protected bool IsAttacked(byte attack_points) {
+            return false;
+        }
 
+
+        protected override abstract void Move();
     }
 }
