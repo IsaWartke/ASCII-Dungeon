@@ -8,5 +8,9 @@ namespace ASCII_Dungeon
 {
     class Stone : GameObject
     {
+        protected override void Move()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

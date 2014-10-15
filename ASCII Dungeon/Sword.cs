@@ -8,5 +8,9 @@ namespace ASCII_Dungeon
 {
     class Sword : GameObject
     {
+        protected override void Move()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -8,5 +8,9 @@ namespace ASCII_Dungeon
 {
     class Heart : GameObject
     {
+        protected override void Move()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
