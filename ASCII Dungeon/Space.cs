@@ -21,11 +21,5 @@ namespace ASCII_Dungeon
             get { return ObjectApperance; }
             set { ObjectApperance = value; }
         }
-
-        protected override void Move()
-        {
-            throw new NotImplementedException();
-            //Space bewegt sich nicht
-        }
     }
 }
