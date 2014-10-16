@@ -8,6 +8,7 @@ namespace ASCII_Dungeon
 {
     public class Stone : GameObject
     {
+<<<<<<< HEAD
         private char ObjectApperance = '♦';
         private Vector2 MyVector;
 
@@ -22,10 +23,11 @@ namespace ASCII_Dungeon
             set { ObjectApperance = value; }
         }
 
+=======
+>>>>>>> 07ac3ce5458a2af185e51d1806c7ca83a16fdc6c
         protected override void Move()
         {
             throw new NotImplementedException();
         }
     }
 }
-

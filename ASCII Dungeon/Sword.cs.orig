@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace ASCII_Dungeon
 {
-    public class Stone : GameObject
+    public class Sword : GameObject
     {
-        private char ObjectApperance = '♦';
+<<<<<<< HEAD
+        private char ObjectApperance = '┼';
         private Vector2 MyVector;
 
-        public Stone(Vector2 myVector)
+        public Sword(Vector2 myVector)
         {
             this.MyVector = myVector;
         }
@@ -25,7 +26,12 @@ namespace ASCII_Dungeon
         protected override void Move()
         {
             throw new NotImplementedException();
+            //Sword bewegt sich nicht
+=======
+        protected override void Move()
+        {
+            throw new NotImplementedException();
+>>>>>>> 07ac3ce5458a2af185e51d1806c7ca83a16fdc6c
         }
     }
 }
-
