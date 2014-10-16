@@ -8,7 +8,6 @@ namespace ASCII_Dungeon
 {
     class Sound
     {
-
         public void BackgroundSound() 
         {
             

@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace ASCII_Dungeon
 {
-    abstract class GameObject
+    public abstract class GameObject
     {
+        public GameObject()
+        {
 
+        }
         protected abstract void Move();
 
         public void Render() { }
