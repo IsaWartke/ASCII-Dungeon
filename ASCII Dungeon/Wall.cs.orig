@@ -8,6 +8,7 @@ namespace ASCII_Dungeon
 {
     public class Wall : GameObject
     {
+<<<<<<< HEAD
         private char ObjectApperance = '█';
         private Vector2 MyVector;
 
@@ -22,5 +23,17 @@ namespace ASCII_Dungeon
             set { ObjectApperance = value; }
         }
 
+        protected override void Move()
+        {
+            throw new NotImplementedException();
+            //Wall bewegt sich nicht
+        }
+
+=======
+        protected override void Move()
+        {
+            throw new NotImplementedException();
+        }
+>>>>>>> 07ac3ce5458a2af185e51d1806c7ca83a16fdc6c
     }
 }

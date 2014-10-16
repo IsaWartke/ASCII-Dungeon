@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace ASCII_Dungeon
 {
-    abstract class GameObject
+    public abstract class GameObject
     {
+        public GameObject()
+        {
 
         protected Vector2 Coordin;
         protected char ObjectApperance;

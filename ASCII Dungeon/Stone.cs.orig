@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace ASCII_Dungeon
 {
-    public class Wall : GameObject
+    public class Stone : GameObject
     {
-        private char ObjectApperance = '█';
+<<<<<<< HEAD
+        private char ObjectApperance = '♦';
         private Vector2 MyVector;
 
-        public Wall(Vector2 myVector)
+        public Stone(Vector2 myVector)
         {
             this.MyVector = myVector;
         }
@@ -22,5 +23,11 @@ namespace ASCII_Dungeon
             set { ObjectApperance = value; }
         }
 
+=======
+>>>>>>> 07ac3ce5458a2af185e51d1806c7ca83a16fdc6c
+        protected override void Move()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

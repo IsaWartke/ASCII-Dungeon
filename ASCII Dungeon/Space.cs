@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace ASCII_Dungeon
 {
-    public class Wall : GameObject
+    class Space : GameObject
     {
-        private char ObjectApperance = '█';
+         private char ObjectApperance = ' ';
         private Vector2 MyVector;
 
-        public Wall(Vector2 myVector)
+        public Space(Vector2 myVector)
         {
             this.MyVector = myVector;
         }
@@ -22,5 +22,10 @@ namespace ASCII_Dungeon
             set { ObjectApperance = value; }
         }
 
+        protected override void Move()
+        {
+            throw new NotImplementedException();
+            //Space bewegt sich nicht
+        }
     }
 }
