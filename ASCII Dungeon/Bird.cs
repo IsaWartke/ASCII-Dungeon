@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace ASCII_Dungeon
 {
-    abstract class Enemy : Character
+    class Bird : Enemy
     {
-        protected enum BehaviorStatus { Death, Walk, HaveBreak, Fight, Rotation };
 
     }
 }

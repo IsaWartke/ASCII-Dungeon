@@ -8,9 +8,18 @@ namespace ASCII_Dungeon
 {
     class Door : GameObject
     {
-        protected override void Move()
+
+        private Door()
         {
-            throw new NotImplementedException();
         }
+
+        private char ObjectApperance = '▒';
+
+        public char ObjectApperance1
+        {
+            get { return ObjectApperance; }
+            set { ObjectApperance = value; }
+        }
+
     }
 }

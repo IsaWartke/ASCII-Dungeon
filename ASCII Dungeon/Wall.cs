@@ -8,9 +8,19 @@ namespace ASCII_Dungeon
 {
     class Wall : GameObject
     {
-        protected override void Move()
+ 
+        private Wall(Vector2 coordinates)
         {
-            throw new NotImplementedException();
         }
+
+        private char ObjectApperance ='█';
+
+        public char ObjectApperance1
+        {
+            get { return ObjectApperance; }
+            set { ObjectApperance = value; }
+        }
+
+
     }
 }

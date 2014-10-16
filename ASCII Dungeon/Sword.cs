@@ -6,11 +6,15 @@ using System.Threading.Tasks;
 
 namespace ASCII_Dungeon
 {
-    class Sword : GameObject
+    internal class Sword : GameObject
     {
-        protected override void Move()
+        private char ObjectApperance = '┼';
+
+        public char ObjectApperance1
         {
-            throw new NotImplementedException();
+            get { return ObjectApperance; }
+            set { ObjectApperance = value; }
         }
+
     }
 }

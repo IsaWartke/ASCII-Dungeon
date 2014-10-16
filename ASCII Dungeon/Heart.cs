@@ -8,9 +8,13 @@ namespace ASCII_Dungeon
 {
     class Heart : GameObject
     {
-        protected override void Move()
+        private char ObjectApperance = '♥';
+
+        public char ObjectApperance1
         {
-            throw new NotImplementedException();
+            get { return ObjectApperance; }
+            set { ObjectApperance = value; }
         }
+
     }
 }

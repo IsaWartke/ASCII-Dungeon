@@ -12,17 +12,14 @@ namespace ASCII_Dungeon
         protected byte LifePoints;
         protected byte AttackPoints;
         protected char ViewingDirection;
-        protected byte Xpos;
-        protected byte Ypos;
+        protected Vector2 Coordinates;
 
 
 
 
-        protected bool IsAttacked(byte attack_points) {
+        protected bool IsAttacked(byte attackPoints) {
             return false;
         }
 
-
-        protected override abstract void Move();
     }
 }
