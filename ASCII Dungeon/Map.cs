@@ -25,12 +25,7 @@ namespace ASCII_Dungeon
             {
                 for (int y = 1; y <= lines[x-1].Length; y++)
                 {
-                    GameObject myObject = checkGameObject(lines[x-1][y-1], x-1, y-1);
-                    if (myObject != null)
-                    {
-                        myObject.Render();
-                        GameObjectList.Add(myObject);
-                    }
+                    InitGameObject(lines[x-1][y-1], x-1, y-1); 
                 }
             }
         }
@@ -62,7 +57,7 @@ namespace ASCII_Dungeon
             _dirtyFields.Add(position);
         }
 
-        public GameObject checkGameObject(char MapSymbol, int x, int y)
+        public void InitGameObject(char MapSymbol, int x, int y)
         {
             Vector2 myVector = new Vector2(x, y);
             Wall checkWall = new Wall (myVector);
@@ -75,31 +70,37 @@ namespace ASCII_Dungeon
 
             if (MapSymbol == checkWall.ObjectApperance1) 
             {
-                return checkWall;
+                checkWall.Render(myVector, myVector, checkWall.ObjectApperance1);
+                GameObjectList.Add(checkWall);
             }
 
-            if (MapSymbol == checkHeart.ObjectApperance1)
+            else if (MapSymbol == checkHeart.ObjectApperance1)
             {
-                return checkHeart;
+                checkHeart.Render(myVector, myVector, checkHeart.ObjectApperance1);
+                GameObjectList.Add(checkHeart);
             }
 
-            if (MapSymbol == checkStone.ObjectApperance1)
+            else if (MapSymbol == checkStone.ObjectApperance1)
             {
-                return checkStone;
+                checkStone.Render(myVector, myVector, checkStone.ObjectApperance1);
+                GameObjectList.Add(checkStone);
             }
 
-            if (MapSymbol == checkSword.ObjectApperance1)
+            else if (MapSymbol == checkSword.ObjectApperance1)
             {
-                return checkSword;
+                checkSword.Render(myVector, myVector, checkSword.ObjectApperance1);
+                GameObjectList.Add(checkSword);
             }
 
-            if (MapSymbol == checkDoor.ObjectApperance1)
+            else if (MapSymbol == checkDoor.ObjectApperance1)
             {
-                return checkDoor;
+                checkDoor.Render(myVector, myVector, checkDoor.ObjectApperance1);
+                GameObjectList.Add(checkDoor);
             }
             else
             {
-                return checkSpace;
+                checkSpace.Render(myVector, myVector, checkSpace.ObjectApperance1);
+                GameObjectList.Add(checkSpace);
             }
         }
     }

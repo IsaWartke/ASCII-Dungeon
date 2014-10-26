@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ASCII_Dungeon
+﻿namespace ASCII_Dungeon
 {
     abstract class Character : GameObject
     {
@@ -12,13 +6,12 @@ namespace ASCII_Dungeon
         protected byte LifePoints;
         protected byte AttackPoints;
         protected char ViewingDirection;
-        protected Vector2 Coordinates;
 
 
 
 
-        protected bool IsAttacked(byte attackPoints) {
-            return false;
+        public void IsAttacked(byte attackPoints) {
+
         }
 
     }
