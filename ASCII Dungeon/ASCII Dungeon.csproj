@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Bird.cs" />
     <Compile Include="Character.cs" />
+    <Compile Include="Hero.cs" />
     <Compile Include="Door.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="Input.cs" />

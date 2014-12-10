@@ -6,59 +6,46 @@ using System.Threading.Tasks;
 
 namespace ASCII_Dungeon
 {
-    class Input
+        class Input
     {
-
-        public delegate void InputEvent(ConsoleKeyInfo key);
-
-        public event InputEvent OnUpKey;
-        public event InputEvent OnDownKey;
-        public event InputEvent OnLeftKey;
-        public event InputEvent OnRightKey;
-        public event InputEvent OnSpaceKey;
-
         public bool KeyStroke()
         {
             if (Console.KeyAvailable)
             {
-                if (OnUpKey != null)
+                ConsoleKeyInfo key = Console.ReadKey();
+
+                if (key.Key == ConsoleKey.UpArrow)
                 {
-                    OnUpKey.Invoke(Console.ReadKey());            
+                    // PlayerController.upwards();
+                    Console.WriteLine("Im a up key!");            
                 }
 
-                if (OnDownKey != null)
+                if (key.Key == ConsoleKey.DownArrow)
                 {
-                    OnDownKey.Invoke(Console.ReadKey());
+                    // PlayerController.downwards();
+                    Console.WriteLine("Im a down key!");
                 }
 
-                if (OnLeftKey != null)
+                if (key.Key == ConsoleKey.LeftArrow)
                 {
-                    OnLeftKey.Invoke(Console.ReadKey());
+                    // PlayerController.leftwards();
+                    Console.WriteLine("Im a left key!");
                 }
 
-                if (OnRightKey != null)
+                if (key.Key == ConsoleKey.RightArrow)
                 {
-                    OnRightKey.Invoke(Console.ReadKey());
+                    // PlayerController.rightwards();
+                    Console.WriteLine("Im a rigth key!");
                 }
 
-                if (OnSpaceKey != null)
+                if (key.Key == ConsoleKey.Spacebar)
                 {
-                    OnSpaceKey.Invoke(Console.ReadKey());
-                }
-                return true;                
-                    
+                    // PlayerController.strike();
+                    Console.WriteLine("Im a spacebar!");
+                } 
+                return true;                 
             }
             return false;
         }
-
-        /*
-        Input.OnUpKey += Player.UpKey;
-        Input.OnDownKey += Player.DownKey;
-        Input.OnLeftKey += Player.LeftKey;
-        Input.OnRightKey += Player.RightKey;
-        Input.OnSpaceKey += Player.SpaceKey;
-        
-        
-        */
     }
 }

@@ -19,7 +19,7 @@ namespace ASCII_Dungeon
             Console.CursorVisible = false;
             map = new Map("Maps/Map.txt");
             Input control = new Input();
-            //map.FullRender();
+
             while(true)
             {
                 map.PurgeDeadEnemies();
@@ -29,7 +29,7 @@ namespace ASCII_Dungeon
                     continue;
                 }
                 map.Render();
-                Console.ReadKey();
+                //Console.ReadKey();
             }
         }
     }

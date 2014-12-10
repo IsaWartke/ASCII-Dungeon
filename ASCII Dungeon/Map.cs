@@ -31,18 +31,6 @@ namespace ASCII_Dungeon
             }
         }
 
-        //public void FullRender()
-        //{
-        //    for (int x = 0; x <= _content.GetUpperBound(0); x++)
-        //    {
-        //        for (int y = 0; y <= _content.GetUpperBound(1); y++)
-        //        {
-        //            Console.SetCursorPosition(x, y);
-        //            Console.Write(_content[x, y]);
-        //        }
-        //    }
-        //}
-
         public void Render()
         {
             foreach(Vector2 pos in _dirtyFields)
@@ -99,6 +87,12 @@ namespace ASCII_Dungeon
                     GameObjectList.Add(door);
                     break;
 
+                case '►':
+                    Hero hero = new Hero(x, y);
+                    hero.Render(myVector, myVector, hero.ObjectAppearance);
+                    GameObjectList.Add(hero);
+                    break;
+
                 case 'X':
                     Bird bird = new Bird(x, y);
                     bird.Render(myVector, myVector, bird.ObjectAppearance);
@@ -106,52 +100,6 @@ namespace ASCII_Dungeon
                     break;
             }
             
-            //Wall checkWall = new Wall (x,y);
-            //Heart checkHeart = new Heart(x,y);
-            //Stone checkStone = new Stone(x,y);
-            //Sword checkSword = new Sword(x,y);
-            //Door checkDoor = new Door(x,y);
-            //Space checkSpace = new Space(x,y);
-            //Bird checkBird = new Bird(x, y);
-
-            //if (MapSymbol == checkWall.ObjectAppearance) 
-            //{
-            //    checkWall.Render(myVector, myVector, checkWall.ObjectAppearance);
-            //    GameObjectList.Add(checkWall);
-            //}
-            //else if (MapSymbol == checkBird.ObjectAppearance)
-            //{
-            //    checkBird.Render(myVector, myVector, checkBird.ObjectAppearance);
-            //    GameObjectList.Add(checkBird);
-            //}
-            //else if (MapSymbol == checkHeart.ObjectAppearance)
-            //{
-            //    checkHeart.Render(myVector, myVector, checkHeart.ObjectAppearance);
-            //    GameObjectList.Add(checkHeart);
-            //}
-
-            //else if (MapSymbol == checkStone.ObjectAppearance)
-            //{
-            //    checkStone.Render(myVector, myVector, checkStone.ObjectAppearance);
-            //    GameObjectList.Add(checkStone);
-            //}
-
-            //else if (MapSymbol == checkSword.ObjectAppearance)
-            //{
-            //    checkSword.Render(myVector, myVector, checkSword.ObjectAppearance);
-            //    GameObjectList.Add(checkSword);
-            //}
-
-            //else if (MapSymbol == checkDoor.ObjectAppearance)
-            //{
-            //    checkDoor.Render(myVector, myVector, checkDoor.ObjectAppearance);
-            //    GameObjectList.Add(checkDoor);
-            //}
-            //else
-            //{
-            //    checkSpace.Render(myVector, myVector, checkSpace.ObjectAppearance);
-            //    GameObjectList.Add(checkSpace);
-            //}
         }
 
         public void PurgeDeadEnemies()
