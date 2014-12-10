@@ -13,6 +13,9 @@ namespace ASCII_Dungeon
             get { return '▒'; }
         }
 
-        public Door(int x, int y) : base(x,y) { }
+        public Door(int x, int y) : base(x,y) 
+        {
+            Render(Coordin, Coordin, ObjectAppearance);
+        }
     }
 }

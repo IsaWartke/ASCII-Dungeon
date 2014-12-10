@@ -8,15 +8,28 @@ namespace ASCII_Dungeon
 {
     class Bird : Enemy
     {
-        private char[] Appearance = { '⦕', '⦖', ' ', ' ' }; // East, West, North, South
-        private byte AttackPoints = 1;
-        private char ObjectApperance = '⦕';
-        char ViewingDirection = 'E';
         private Vector2 NewCoordinates;
+        
+
+        public Bird(int x, int y) : base(x,y) 
+        {
+            Appearance = new char[]{ 'X', 'B', '-', '-' };
+            AttackPoints = 1;
+            LifePoints = 1;
+            ViewingDirection = 'E';
+            ObjectAppearance = 'X';
+            //Render(Coordin, Coordin, 'X');
+        }
+
 
         public override void EnemyControl()
         {
             GameObject ColissionObj = CollisionObject(NextStep(ViewingDirection, Coordin));
+
+            if (ColissionObj == null)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
 
             if (typeof(Space) == ColissionObj.GetType())
             {
@@ -71,12 +84,12 @@ namespace ASCII_Dungeon
             if (viewingDirection == 'E')
             {
                 ViewingDirection = 'W';
-                ObjectApperance = Appearance[1];
+                ObjectAppearance = Appearance[1];
             }
             else
             {
                 ViewingDirection = 'E';
-                ObjectApperance = Appearance[0];
+                ObjectAppearance = Appearance[0];
             }
         }
     }

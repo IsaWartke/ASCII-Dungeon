@@ -67,14 +67,18 @@ namespace ASCII_Dungeon
             Sword checkSword = new Sword(x,y);
             Door checkDoor = new Door(x,y);
             Space checkSpace = new Space(x,y);
-
+            Bird checkBird = new Bird(x, y);
 
             if (MapSymbol == checkWall.ObjectAppearance) 
             {
                 checkWall.Render(myVector, myVector, checkWall.ObjectAppearance);
                 GameObjectList.Add(checkWall);
             }
-
+            else if (MapSymbol == checkBird.ObjectAppearance)
+            {
+                checkBird.Render(myVector, myVector, checkBird.ObjectAppearance);
+                GameObjectList.Add(checkBird);
+            }
             else if (MapSymbol == checkHeart.ObjectAppearance)
             {
                 checkHeart.Render(myVector, myVector, checkHeart.ObjectAppearance);

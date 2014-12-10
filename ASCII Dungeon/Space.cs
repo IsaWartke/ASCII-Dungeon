@@ -15,6 +15,9 @@ namespace ASCII_Dungeon
 
         public Space(int x, int y) : base(x,y) { }
 
-        public Space(Vector2 vec) : base(vec.X, vec.Y) { }
+        public Space(Vector2 vec) : base(vec.X, vec.Y) 
+        {
+            Render(Coordin, Coordin, ObjectAppearance);
+        }
     }
 }

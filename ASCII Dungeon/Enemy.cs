@@ -10,7 +10,7 @@ namespace ASCII_Dungeon
     {
         public abstract void EnemyControl();
 
-        protected byte LifePoints = 1;
+        public Enemy(int x, int y) : base(x,y) { }
 
         public bool IsDead { get { return LifePoints <= 0; } }
     }

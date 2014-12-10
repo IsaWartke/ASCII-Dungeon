@@ -13,6 +13,9 @@ namespace ASCII_Dungeon
             get { return '┼'; }
         }
 
-        public Sword(int x, int y) : base(x,y) { }
+        public Sword(int x, int y) : base(x,y) 
+        {
+            Render(Coordin, Coordin, ObjectAppearance);
+        }
     }
 }

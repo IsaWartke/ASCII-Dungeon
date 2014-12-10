@@ -8,14 +8,16 @@ using ASCII_Dungeon;
 
 namespace ASCII_Dungeon
 {
-    class Program
+    static class Program
     {
+        public static Map map;
+
         static void Main(string[] args)
         {
 
             
             Console.CursorVisible = false;
-            Map map = new Map("Maps/Map.txt");
+            map = new Map("Maps/Map.txt");
             Input control = new Input();
             //map.FullRender();
             while(true)

@@ -13,6 +13,9 @@ namespace ASCII_Dungeon
             get { return '♥'; }
         }
 
-        public Heart(int x, int y) : base(x,y) { }
+        public Heart(int x, int y) : base(x,y) 
+        {
+            Render(Coordin, Coordin, ObjectAppearance);
+        }
     }
 }

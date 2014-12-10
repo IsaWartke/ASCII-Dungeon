@@ -8,7 +8,7 @@
         protected char ViewingDirection;
 
 
-
+        public Character(int x, int y) : base(x,y) { }
 
         public void IsAttacked(byte attackPoints) {
 

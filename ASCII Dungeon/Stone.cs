@@ -13,7 +13,10 @@ namespace ASCII_Dungeon
             get { return '♦'; }
         }
 
-        public Stone(int x, int y) : base(x,y) { }
+        public Stone(int x, int y) : base(x,y) 
+        {
+            Render(Coordin, Coordin, ObjectAppearance);
+        }
     }
 }
 

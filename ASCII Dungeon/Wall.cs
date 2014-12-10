@@ -8,11 +8,17 @@ namespace ASCII_Dungeon
 {
     public class Wall : GameObject
     {
+        public const char Symbol = '█';
+
+
         public override char ObjectAppearance
         {
-            get { return '█'; }
+            get { return Symbol; }
         }
 
-        public Wall(int x, int y) : base(x,y) { }
+        public Wall(int x, int y) : base(x,y) 
+        {
+            Render(Coordin, Coordin, ObjectAppearance);
+        }
     }
 }
