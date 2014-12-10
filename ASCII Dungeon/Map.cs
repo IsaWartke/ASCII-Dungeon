@@ -57,56 +57,101 @@ namespace ASCII_Dungeon
         {
             _dirtyFields.Add(position);
         }
-
+        
         public void InitGameObject(char MapSymbol, int x, int y)
         {
             Vector2 myVector = new Vector2(x, y);
-            Wall checkWall = new Wall (x,y);
-            Heart checkHeart = new Heart(x,y);
-            Stone checkStone = new Stone(x,y);
-            Sword checkSword = new Sword(x,y);
-            Door checkDoor = new Door(x,y);
-            Space checkSpace = new Space(x,y);
-            Bird checkBird = new Bird(x, y);
+            switch (MapSymbol)
+            {
+                case '█':
+                    Wall wall = new Wall(x,y);
+                    wall.Render(myVector, myVector, wall.ObjectAppearance);
+                    GameObjectList.Add(wall);
+                    break;
 
-            if (MapSymbol == checkWall.ObjectAppearance) 
-            {
-                checkWall.Render(myVector, myVector, checkWall.ObjectAppearance);
-                GameObjectList.Add(checkWall);
-            }
-            else if (MapSymbol == checkBird.ObjectAppearance)
-            {
-                checkBird.Render(myVector, myVector, checkBird.ObjectAppearance);
-                GameObjectList.Add(checkBird);
-            }
-            else if (MapSymbol == checkHeart.ObjectAppearance)
-            {
-                checkHeart.Render(myVector, myVector, checkHeart.ObjectAppearance);
-                GameObjectList.Add(checkHeart);
-            }
+                case ' ':
+                    Space space = new Space(x, y);
+                    space.Render(myVector, myVector, space.ObjectAppearance);
+                    GameObjectList.Add(space);
+                    break;
 
-            else if (MapSymbol == checkStone.ObjectAppearance)
-            {
-                checkStone.Render(myVector, myVector, checkStone.ObjectAppearance);
-                GameObjectList.Add(checkStone);
-            }
+                case '♥':
+                    Heart heart = new Heart(x, y);
+                    heart.Render(myVector, myVector, heart.ObjectAppearance);
+                    GameObjectList.Add(heart);
+                    break;
 
-            else if (MapSymbol == checkSword.ObjectAppearance)
-            {
-                checkSword.Render(myVector, myVector, checkSword.ObjectAppearance);
-                GameObjectList.Add(checkSword);
-            }
+                case '♦':
+                    Stone stone = new Stone(x, y);
+                    stone.Render(myVector, myVector, stone.ObjectAppearance);
+                    GameObjectList.Add(stone);
+                    break;
 
-            else if (MapSymbol == checkDoor.ObjectAppearance)
-            {
-                checkDoor.Render(myVector, myVector, checkDoor.ObjectAppearance);
-                GameObjectList.Add(checkDoor);
+                case '┼':
+                    Sword sword = new Sword(x, y);
+                    sword.Render(myVector, myVector, sword.ObjectAppearance);
+                    GameObjectList.Add(sword);
+                    break;
+
+                case '▒':
+                    Door door = new Door(x, y);
+                    door.Render(myVector, myVector, door.ObjectAppearance);
+                    GameObjectList.Add(door);
+                    break;
+
+                case 'X':
+                    Bird bird = new Bird(x, y);
+                    bird.Render(myVector, myVector, bird.ObjectAppearance);
+                    GameObjectList.Add(bird);
+                    break;
             }
-            else
-            {
-                checkSpace.Render(myVector, myVector, checkSpace.ObjectAppearance);
-                GameObjectList.Add(checkSpace);
-            }
+            
+            //Wall checkWall = new Wall (x,y);
+            //Heart checkHeart = new Heart(x,y);
+            //Stone checkStone = new Stone(x,y);
+            //Sword checkSword = new Sword(x,y);
+            //Door checkDoor = new Door(x,y);
+            //Space checkSpace = new Space(x,y);
+            //Bird checkBird = new Bird(x, y);
+
+            //if (MapSymbol == checkWall.ObjectAppearance) 
+            //{
+            //    checkWall.Render(myVector, myVector, checkWall.ObjectAppearance);
+            //    GameObjectList.Add(checkWall);
+            //}
+            //else if (MapSymbol == checkBird.ObjectAppearance)
+            //{
+            //    checkBird.Render(myVector, myVector, checkBird.ObjectAppearance);
+            //    GameObjectList.Add(checkBird);
+            //}
+            //else if (MapSymbol == checkHeart.ObjectAppearance)
+            //{
+            //    checkHeart.Render(myVector, myVector, checkHeart.ObjectAppearance);
+            //    GameObjectList.Add(checkHeart);
+            //}
+
+            //else if (MapSymbol == checkStone.ObjectAppearance)
+            //{
+            //    checkStone.Render(myVector, myVector, checkStone.ObjectAppearance);
+            //    GameObjectList.Add(checkStone);
+            //}
+
+            //else if (MapSymbol == checkSword.ObjectAppearance)
+            //{
+            //    checkSword.Render(myVector, myVector, checkSword.ObjectAppearance);
+            //    GameObjectList.Add(checkSword);
+            //}
+
+            //else if (MapSymbol == checkDoor.ObjectAppearance)
+            //{
+            //    checkDoor.Render(myVector, myVector, checkDoor.ObjectAppearance);
+            //    GameObjectList.Add(checkDoor);
+            //}
+            //else
+            //{
+            //    checkSpace.Render(myVector, myVector, checkSpace.ObjectAppearance);
+            //    GameObjectList.Add(checkSpace);
+            //}
         }
 
         public void PurgeDeadEnemies()
