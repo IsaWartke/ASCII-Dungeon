@@ -8,7 +8,10 @@ namespace ASCII_Dungeon
 {
     abstract class Enemy : Character
     {
-        protected enum BehaviorStatus { Death, Walk, HaveBreak, Fight, Rotation };
+        public abstract void EnemyControl();
 
+        protected byte LifePoints = 1;
+
+        public bool IsDead { get { return LifePoints <= 0; } }
     }
 }

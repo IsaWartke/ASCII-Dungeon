@@ -8,18 +8,13 @@ namespace ASCII_Dungeon
 {
     class Space : GameObject
     {
-         private char ObjectApperance = ' ';
-        private Vector2 MyVector;
-
-        public Space(Vector2 myVector)
+        public override char ObjectAppearance
         {
-            this.MyVector = myVector;
+            get { return ' '; }
         }
 
-        public char ObjectApperance1
-        {
-            get { return ObjectApperance; }
-            set { ObjectApperance = value; }
-        }
+        public Space(int x, int y) : base(x,y) { }
+
+        public Space(Vector2 vec) : base(vec.X, vec.Y) { }
     }
 }

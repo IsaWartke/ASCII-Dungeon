@@ -18,9 +18,10 @@ namespace ASCII_Dungeon
             Map map = new Map("Maps/Map.txt");
             Input control = new Input();
             //map.FullRender();
-
             while(true)
             {
+                map.PurgeDeadEnemies();
+
                 if (!control.KeyStroke())
                 {
                     continue;

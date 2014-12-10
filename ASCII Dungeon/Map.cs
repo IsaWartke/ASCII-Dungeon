@@ -9,9 +9,10 @@ namespace ASCII_Dungeon
     public class Map
     {
         private GameObject[,] _content;
-        private List<GameObject> GameObjectList = new List<GameObject>();
+        public List<GameObject> GameObjectList = new List<GameObject>();
 
         private List<Vector2> _dirtyFields = new List<Vector2>();
+        //Space-Objekt was bei Gegnertod erstellt wird in die GameObjectList speichern
 
         public Map(string fileName)
         {
@@ -60,47 +61,59 @@ namespace ASCII_Dungeon
         public void InitGameObject(char MapSymbol, int x, int y)
         {
             Vector2 myVector = new Vector2(x, y);
-            Wall checkWall = new Wall (myVector);
-            Heart checkHeart = new Heart(myVector);
-            Stone checkStone = new Stone(myVector);
-            Sword checkSword = new Sword(myVector);
-            Door checkDoor = new Door(myVector);
-            Space checkSpace = new Space(myVector);
+            Wall checkWall = new Wall (x,y);
+            Heart checkHeart = new Heart(x,y);
+            Stone checkStone = new Stone(x,y);
+            Sword checkSword = new Sword(x,y);
+            Door checkDoor = new Door(x,y);
+            Space checkSpace = new Space(x,y);
 
 
-            if (MapSymbol == checkWall.ObjectApperance1) 
+            if (MapSymbol == checkWall.ObjectAppearance) 
             {
-                checkWall.Render(myVector, myVector, checkWall.ObjectApperance1);
+                checkWall.Render(myVector, myVector, checkWall.ObjectAppearance);
                 GameObjectList.Add(checkWall);
             }
 
-            else if (MapSymbol == checkHeart.ObjectApperance1)
+            else if (MapSymbol == checkHeart.ObjectAppearance)
             {
-                checkHeart.Render(myVector, myVector, checkHeart.ObjectApperance1);
+                checkHeart.Render(myVector, myVector, checkHeart.ObjectAppearance);
                 GameObjectList.Add(checkHeart);
             }
 
-            else if (MapSymbol == checkStone.ObjectApperance1)
+            else if (MapSymbol == checkStone.ObjectAppearance)
             {
-                checkStone.Render(myVector, myVector, checkStone.ObjectApperance1);
+                checkStone.Render(myVector, myVector, checkStone.ObjectAppearance);
                 GameObjectList.Add(checkStone);
             }
 
-            else if (MapSymbol == checkSword.ObjectApperance1)
+            else if (MapSymbol == checkSword.ObjectAppearance)
             {
-                checkSword.Render(myVector, myVector, checkSword.ObjectApperance1);
+                checkSword.Render(myVector, myVector, checkSword.ObjectAppearance);
                 GameObjectList.Add(checkSword);
             }
 
-            else if (MapSymbol == checkDoor.ObjectApperance1)
+            else if (MapSymbol == checkDoor.ObjectAppearance)
             {
-                checkDoor.Render(myVector, myVector, checkDoor.ObjectApperance1);
+                checkDoor.Render(myVector, myVector, checkDoor.ObjectAppearance);
                 GameObjectList.Add(checkDoor);
             }
             else
             {
-                checkSpace.Render(myVector, myVector, checkSpace.ObjectApperance1);
+                checkSpace.Render(myVector, myVector, checkSpace.ObjectAppearance);
                 GameObjectList.Add(checkSpace);
+            }
+        }
+
+        public void PurgeDeadEnemies()
+        {
+            for (int i = GameObjectList.Count - 1; i >= 0; i--)
+            {
+                if (GameObjectList[i] is Enemy && (GameObjectList[i] as Enemy).IsDead)
+                {
+                    GameObjectList.Add(new Space(GameObjectList[i].Coordin));
+                    GameObjectList.RemoveAt(i);
+                }
             }
         }
     }

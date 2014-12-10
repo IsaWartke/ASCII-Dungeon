@@ -9,24 +9,22 @@ namespace ASCII_Dungeon
 {
     public abstract class GameObject
     {
-        public GameObject()
+        public GameObject() : this(0,0) { }
+
+        public GameObject(int x, int y)
         {
+            Coordin = new Vector2(x,y);
         }
 
-        protected Vector2 Coordin;
-        protected char ObjectApperance;
+        public Vector2 Coordin;
 
-        public char ObjectApperance1
-        {
-            get { return ObjectApperance; }
-            set { ObjectApperance = value; }
-        }
+        public virtual char ObjectAppearance { get; set; }
 
         protected virtual void Move(Vector2 coordinates)
         {
             Vector2 oldCoords = Coordin;
             Vector2 newCoords = coordinates;
-            Render(oldCoords, newCoords, ObjectApperance);
+            Render(oldCoords, newCoords, ObjectAppearance);
             Coordin = coordinates;
         }
 

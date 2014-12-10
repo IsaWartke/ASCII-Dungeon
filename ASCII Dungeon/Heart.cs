@@ -8,18 +8,11 @@ namespace ASCII_Dungeon
 {
     public class Heart : GameObject
     {
-        private char ObjectApperance = '♥';
-        private Vector2 MyVector;
-
-        public Heart(Vector2 myVector)
+        public override char ObjectAppearance
         {
-            this.MyVector = myVector;
+            get { return '♥'; }
         }
 
-        public char ObjectApperance1
-        {
-            get { return ObjectApperance; }
-            set { ObjectApperance = value; }
-        }
+        public Heart(int x, int y) : base(x,y) { }
     }
 }

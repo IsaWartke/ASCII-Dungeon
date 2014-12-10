@@ -8,21 +8,12 @@ namespace ASCII_Dungeon
 {
     public class Stone : GameObject
     {
-        private char ObjectApperance = '♦';
-        private Vector2 MyVector;
-
-        public Stone(Vector2 myVector)
+        public override char ObjectAppearance
         {
-            this.MyVector = myVector;
+            get { return '♦'; }
         }
 
-        public char ObjectApperance1
-        {
-            get { return ObjectApperance; }
-            set { ObjectApperance = value; }
-        }
-
-
+        public Stone(int x, int y) : base(x,y) { }
     }
 }
 

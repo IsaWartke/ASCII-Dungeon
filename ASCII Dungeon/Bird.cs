@@ -9,23 +9,13 @@ namespace ASCII_Dungeon
     class Bird : Enemy
     {
         private char[] Appearance = { '⦕', '⦖', ' ', ' ' }; // East, West, North, South
-        private byte LifePoints = 1;
         private byte AttackPoints = 1;
         private char ObjectApperance = '⦕';
         char ViewingDirection = 'E';
         private Vector2 NewCoordinates;
 
-
-        public bool EnemyControl()
+        public override void EnemyControl()
         {
-            if (LifePoints == 0)
-            { 
-                return false;
-                // Was im kommentar steht muss in gamecontrol erfolgen
-                // lösche feind aus der character liste in GameControl
-                // erstelle an der aktuellen position ein space object 
-                // füge das space object in die GameObject list in der Class Map ein
-            }
             GameObject ColissionObj = CollisionObject(NextStep(ViewingDirection, Coordin));
 
             if (typeof(Space) == ColissionObj.GetType())
@@ -35,29 +25,28 @@ namespace ASCII_Dungeon
             if (typeof(Stone) == ColissionObj.GetType())
             {
                 Rotation(ViewingDirection);
-                Render(Coordin, Coordin, ObjectApperance1);
+                Render(Coordin, Coordin, ObjectAppearance);
             }
             if (typeof(Sword) == ColissionObj.GetType())
             {
                 Rotation(ViewingDirection);
-                Render(Coordin, Coordin, ObjectApperance1);
+                Render(Coordin, Coordin, ObjectAppearance);
             }
             if (typeof( Wall) == ColissionObj.GetType())
             {
                 Rotation(ViewingDirection);
-                Render(Coordin, Coordin, ObjectApperance1);
+                Render(Coordin, Coordin, ObjectAppearance);
             }
             if (typeof(Enemy) == ColissionObj.GetType())
             {
                 Rotation(ViewingDirection);
-                Render(Coordin, Coordin, ObjectApperance1);
+                Render(Coordin, Coordin, ObjectAppearance);
             }
             if (typeof(Character) == ColissionObj.GetType())//Character durch Held ersetzen
             {
                 Character hero = (Character) ColissionObj;
                 hero.IsAttacked(AttackPoints);
             }
-            return true;   
         }
 
 
