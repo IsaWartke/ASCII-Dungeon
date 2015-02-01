@@ -8,16 +8,17 @@ namespace ASCII_Dungeon
 {
     class Bird : Enemy
     {
-        private Vector2 NewCoordinates;
+        private Vector2 OldCoordinates;
+        private Vector2 NewCoordiantes;
         
 
         public Bird(int x, int y) : base(x,y) 
         {
-            Appearance = new char[]{ 'X', 'B', '-', '-' };
+            Appearance = new char[]{ '>', '<', '-', '-' };
             AttackPoints = 1;
             LifePoints = 1;
             ViewingDirection = 'E';
-            ObjectAppearance = 'X';
+            ObjectAppearance = '>';
             //Render(Coordin, Coordin, 'X');
         }
 
@@ -33,7 +34,20 @@ namespace ASCII_Dungeon
 
             if (typeof(Space) == ColissionObj.GetType())
             {
-                Move(NewCoordinates);
+                switch (ViewingDirection)
+                {
+                    case 'E': // East
+                        OldCoordinates = new Vector2(Coordin.X, Coordin.Y);
+                        Coordin.Y++;
+                        NewCoordiantes = Coordin;
+                        break;
+                    case 'W': 
+                        OldCoordinates = new Vector2(Coordin.X, Coordin.Y);
+                        Coordin.Y--;
+                        NewCoordiantes = Coordin;
+                        break;
+                }
+                Move(NewCoordiantes, OldCoordinates);
             }
             if (typeof(Stone) == ColissionObj.GetType())
             {
@@ -55,9 +69,9 @@ namespace ASCII_Dungeon
                 Rotation(ViewingDirection);
                 Render(Coordin, Coordin, ObjectAppearance);
             }
-            if (typeof(Character) == ColissionObj.GetType())//Character durch Held ersetzen
+            if (typeof(Hero) == ColissionObj.GetType())//Character durch Held ersetzen
             {
-                Character hero = (Character) ColissionObj;
+                Hero hero = (Hero)ColissionObj;
                 hero.IsAttacked(AttackPoints);
             }
         }
@@ -69,11 +83,9 @@ namespace ASCII_Dungeon
             switch (viewingDirection)
             {
                 case 'E': // East
-                    coordinates.X++;
-                    return NewCoordinates = coordinates;
+                    return new Vector2(coordinates.X, coordinates.Y + 1);
                 case 'W': // West
-                    coordinates.X--;
-                    return NewCoordinates = coordinates;
+                    return new Vector2(coordinates.X, coordinates.Y - 1);
             }
             return Coordin;
         }

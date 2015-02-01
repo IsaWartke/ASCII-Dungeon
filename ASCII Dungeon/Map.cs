@@ -93,7 +93,10 @@ namespace ASCII_Dungeon
                     GameObjectList.Add(hero);
                     break;
 
-                case 'X':
+                case '>':
+                    Space space2 = new Space(x, y);
+                    space2.Render(myVector, myVector, space2.ObjectAppearance);
+                    GameObjectList.Add(space2);
                     Bird bird = new Bird(x, y);
                     bird.Render(myVector, myVector, bird.ObjectAppearance);
                     GameObjectList.Add(bird);

@@ -10,8 +10,9 @@
 
         public Character(int x, int y) : base(x,y) { }
 
-        public void IsAttacked(byte attackPoints) {
-
+        public void IsAttacked(byte attackPoints)
+        {
+            LifePoints = (byte)(LifePoints - attackPoints);
         }
 
     }
