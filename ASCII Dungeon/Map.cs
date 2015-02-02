@@ -11,8 +11,9 @@ namespace ASCII_Dungeon
         private GameObject[,] _content;
         public List<GameObject> GameObjectList = new List<GameObject>();
 
-        private List<Vector2> _dirtyFields = new List<Vector2>();
+        public Hero hero;
 
+        private List<Vector2> _dirtyFields = new List<Vector2>();
 
         public Map(string fileName)
         {
@@ -100,7 +101,7 @@ namespace ASCII_Dungeon
                     Space spaceHero = new Space(x, y);
                     spaceHero.Render(myVector, myVector, spaceHero.ObjectAppearance);
                     GameObjectList.Add(spaceHero);
-                    Hero hero = new Hero(x, y);
+                    hero = new Hero(x, y);
                     hero.Render(myVector, myVector, hero.ObjectAppearance);
                     GameObjectList.Add(hero);
                     break;

@@ -1,6 +1,6 @@
 ﻿namespace ASCII_Dungeon
 {
-    abstract class Character : GameObject
+    public abstract class Character : GameObject
     {
         protected char[] Appearance = new char[4];
         protected byte LifePoints;

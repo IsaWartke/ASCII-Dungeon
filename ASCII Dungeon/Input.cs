@@ -16,32 +16,32 @@ namespace ASCII_Dungeon
 
                 if (key.Key == ConsoleKey.UpArrow)
                 {
-                    // PlayerController.upwards();
-                    Console.WriteLine("Im a up key!");            
+                    Program.map.hero.upwards();
+                    //Console.WriteLine("Im a up key!");            
                 }
 
                 if (key.Key == ConsoleKey.DownArrow)
                 {
-                    // PlayerController.downwards();
-                    Console.WriteLine("Im a down key!");
+                    Program.map.hero.downwards();
+                    //Console.WriteLine("Im a down key!");
                 }
 
                 if (key.Key == ConsoleKey.LeftArrow)
                 {
-                    // PlayerController.leftwards();
-                    Console.WriteLine("Im a left key!");
+                    Program.map.hero.leftwards();
+                    //Console.WriteLine("Im a left key!");
                 }
 
                 if (key.Key == ConsoleKey.RightArrow)
                 {
-                    // PlayerController.rightwards();
-                    Console.WriteLine("Im a rigth key!");
+                    Program.map.hero.rightwards();
+                    //Console.WriteLine("Im a rigth key!");
                 }
 
                 if (key.Key == ConsoleKey.Spacebar)
                 {
                     // PlayerController.strike();
-                    Console.WriteLine("Im a spacebar!");
+                    //Console.WriteLine("Im a spacebar!");
                 } 
                 return true;                 
             }

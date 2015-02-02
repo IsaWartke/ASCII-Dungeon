@@ -33,7 +33,7 @@ namespace ASCII_Dungeon
 
             if (oldCoords != newCoords)
             {
-            Console.SetCursorPosition(oldCoords.X, oldCoords.Y);
+            Console.SetCursorPosition(oldCoords.Y, oldCoords.X);
             Console.Write(" ");     //Leerzeichenobjekt einfügen und in Liste der Map schreiben
             }
         }
