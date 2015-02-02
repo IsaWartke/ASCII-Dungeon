@@ -30,11 +30,13 @@ namespace ASCII_Dungeon
             }
             else
             {
-                //if (CollisionDetecion.isfree(x,y-1) == true)
-                OldCoordinates = new Vector2(Coordin.X, Coordin.Y);
-                Coordin.X--;
-                NewCoordinates = Coordin;
-                Move(NewCoordinates, OldCoordinates);
+                if (Collision() == 0 || Collision() == 3)
+                {
+                    OldCoordinates = new Vector2(Coordin.X, Coordin.Y);
+                    Coordin.X--;
+                    NewCoordinates = Coordin;
+                    Move(NewCoordinates, OldCoordinates);
+                }
             }
         }
 
@@ -48,11 +50,13 @@ namespace ASCII_Dungeon
             }
             else
             {
-                //if (CollisionDetecion.isfree(x,y+1) == true)
-                OldCoordinates = new Vector2(Coordin.X, Coordin.Y);
-                Coordin.X++;
-                NewCoordinates = Coordin;
-                Move(NewCoordinates, OldCoordinates);
+                if (Collision() == 0 || Collision() == 3)
+                {
+                    OldCoordinates = new Vector2(Coordin.X, Coordin.Y);
+                    Coordin.X++;
+                    NewCoordinates = Coordin;
+                    Move(NewCoordinates, OldCoordinates);
+                }
             }
         }
 
@@ -66,11 +70,13 @@ namespace ASCII_Dungeon
             }
             else
             {
-                //if (CollisionDetecion.isfree(x+1,y) == true)
-                OldCoordinates = new Vector2(Coordin.X, Coordin.Y);
-                Coordin.Y++;
-                NewCoordinates = Coordin;
-                Move(NewCoordinates, OldCoordinates);
+                if (Collision() == 0 || Collision() == 3)
+               {
+                    OldCoordinates = new Vector2(Coordin.X, Coordin.Y);
+                    Coordin.Y++;
+                    NewCoordinates = Coordin;
+                    Move(NewCoordinates, OldCoordinates);
+               }
             }
         }
 
@@ -84,11 +90,13 @@ namespace ASCII_Dungeon
             }
             else
             {
-                //if (CollisionDetecion.isfree(x-1,y) == true)
-                OldCoordinates = new Vector2(Coordin.X, Coordin.Y);
-                Coordin.Y--;
-                NewCoordinates = Coordin;
-                Move(NewCoordinates, OldCoordinates);
+                if (Collision() == 0 || Collision() == 3)
+                {
+                    OldCoordinates = new Vector2(Coordin.X, Coordin.Y);
+                    Coordin.Y--;
+                    NewCoordinates = Coordin;
+                    Move(NewCoordinates, OldCoordinates);
+                }
             }
         }
 
@@ -142,7 +150,56 @@ namespace ASCII_Dungeon
                     ObjectAppearance = Appearance[1];
                     break;
             }
+        }
 
+        public int Collision()
+        {
+            GameObject CollisionObj = CollisionObject(NextStep(ViewingDirection, Coordin));
+
+            if (CollisionObj == null)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+            if (typeof(Space) == CollisionObj.GetType())
+            {
+                return 0;
+            }
+            if (typeof(Wall) == CollisionObj.GetType())
+            {
+                return 1;
+            }
+            if (typeof(Stone) == CollisionObj.GetType())
+            {
+                return 2;
+            }
+            if (typeof(Sword) == CollisionObj.GetType())
+            {
+                return 3;
+            }
+            if (typeof(Enemy) == CollisionObj.GetType())
+            {
+                return 4;
+            }
+            else 
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        protected Vector2 NextStep(char viewingDirection, Vector2 coordinates)
+        {
+            switch (viewingDirection)
+            {
+                case 'N': // North
+                    return new Vector2(coordinates.X - 1, coordinates.Y);
+                case 'S': // South
+                    return new Vector2(coordinates.X + 1, coordinates.Y);
+                case 'E': // East
+                    return new Vector2(coordinates.X, coordinates.Y + 1);
+                case 'W': // West
+                    return new Vector2(coordinates.X, coordinates.Y - 1);
+            }
+            return Coordin;
         }
     }
 }
