@@ -9,7 +9,7 @@ namespace ASCII_Dungeon
     class Bird : Enemy
     {
         private Vector2 OldCoordinates;
-        private Vector2 NewCoordiantes;
+        private Vector2 NewCoordinates;
         
 
         public Bird(int x, int y) : base(x,y) 
@@ -39,15 +39,15 @@ namespace ASCII_Dungeon
                     case 'E': // East
                         OldCoordinates = new Vector2(Coordin.X, Coordin.Y);
                         Coordin.Y++;
-                        NewCoordiantes = Coordin;
+                        NewCoordinates = Coordin;
                         break;
                     case 'W': 
                         OldCoordinates = new Vector2(Coordin.X, Coordin.Y);
                         Coordin.Y--;
-                        NewCoordiantes = Coordin;
+                        NewCoordinates = Coordin;
                         break;
                 }
-                Move(NewCoordiantes, OldCoordinates);
+                Move(NewCoordinates, OldCoordinates);
             }
             if (typeof(Stone) == ColissionObj.GetType())
             {

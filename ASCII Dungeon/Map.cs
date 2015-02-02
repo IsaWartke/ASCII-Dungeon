@@ -12,7 +12,7 @@ namespace ASCII_Dungeon
         public List<GameObject> GameObjectList = new List<GameObject>();
 
         private List<Vector2> _dirtyFields = new List<Vector2>();
-        //Space-Objekt was bei Gegnertod erstellt wird in die GameObjectList speichern
+
 
         public Map(string fileName)
         {
@@ -64,18 +64,27 @@ namespace ASCII_Dungeon
                     break;
 
                 case '♥':
+                    Space spaceHeart = new Space(x, y);
+                    spaceHeart.Render(myVector, myVector, spaceHeart.ObjectAppearance);
+                    GameObjectList.Add(spaceHeart);
                     Heart heart = new Heart(x, y);
                     heart.Render(myVector, myVector, heart.ObjectAppearance);
                     GameObjectList.Add(heart);
                     break;
 
                 case '♦':
+                    Space spaceStone = new Space(x, y);
+                    spaceStone.Render(myVector, myVector, spaceStone.ObjectAppearance);
+                    GameObjectList.Add(spaceStone);
                     Stone stone = new Stone(x, y);
                     stone.Render(myVector, myVector, stone.ObjectAppearance);
                     GameObjectList.Add(stone);
                     break;
 
                 case '┼':
+                    Space spaceSword = new Space(x, y);
+                    spaceSword.Render(myVector, myVector, spaceSword.ObjectAppearance);
+                    GameObjectList.Add(spaceSword);
                     Sword sword = new Sword(x, y);
                     sword.Render(myVector, myVector, sword.ObjectAppearance);
                     GameObjectList.Add(sword);
@@ -88,15 +97,18 @@ namespace ASCII_Dungeon
                     break;
 
                 case '►':
+                    Space spaceHero = new Space(x, y);
+                    spaceHero.Render(myVector, myVector, spaceHero.ObjectAppearance);
+                    GameObjectList.Add(spaceHero);
                     Hero hero = new Hero(x, y);
                     hero.Render(myVector, myVector, hero.ObjectAppearance);
                     GameObjectList.Add(hero);
                     break;
 
                 case '>':
-                    Space space2 = new Space(x, y);
-                    space2.Render(myVector, myVector, space2.ObjectAppearance);
-                    GameObjectList.Add(space2);
+                    Space spaceBird = new Space(x, y);
+                    spaceBird.Render(myVector, myVector, spaceBird.ObjectAppearance);
+                    GameObjectList.Add(spaceBird);
                     Bird bird = new Bird(x, y);
                     bird.Render(myVector, myVector, bird.ObjectAppearance);
                     GameObjectList.Add(bird);
@@ -111,8 +123,11 @@ namespace ASCII_Dungeon
             {
                 if (GameObjectList[i] is Enemy && (GameObjectList[i] as Enemy).IsDead)
                 {
-                    GameObjectList.Add(new Space(GameObjectList[i].Coordin));
+                    Space space = new Space(GameObjectList[i].Coordin);
+                    GameObjectList.Add(space);
+                    space.Render(GameObjectList[i].Coordin, GameObjectList[i].Coordin, space.ObjectAppearance); 
                     GameObjectList.RemoveAt(i);
+                    //Space-Objekt was bei Gegnertod erstellt wird in die GameObjectList gespeichert
                 }
             }
         }

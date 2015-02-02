@@ -11,26 +11,38 @@ namespace ASCII_Dungeon
     static class Program
     {
         public static Map map;
+        public static bool victory = false;
 
         static void Main(string[] args)
         {
 
-            
             Console.CursorVisible = false;
             map = new Map("Maps/Map.txt");
             Input control = new Input();
+            map.Render();
 
-            while(true)
+            while(!victory)
             {
-                map.PurgeDeadEnemies();
 
-                if (!control.KeyStroke())
+                map.PurgeDeadEnemies();
+                if (!control.KeyStroke()) //warte auf Tasteneingabe
                 {
                     continue;
                 }
-                map.Render();
-                //Console.ReadKey();
+                foreach (GameObject testobject in map.GameObjectList)
+                {
+                    if (typeof(Hero) == testobject.GetType());
+                    {
+                        //lass den Held laufen/angreifen/Aktionen durchführen
+                    }
+                    if (typeof(Bird) == testobject.GetType())
+                    {
+                        Bird enemy = (Bird)testobject;
+                        enemy.EnemyControl();
+                    }
+                }
             }
+            Console.ReadKey();
         }
     }
 }
