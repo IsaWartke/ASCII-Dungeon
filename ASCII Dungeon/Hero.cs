@@ -150,7 +150,7 @@ namespace ASCII_Dungeon
                     break;
 
                 case gotype.Stone:
-                    /*if (Collision(NextStep(ViewingDirection, NextStep(ViewingDirection, Coordin))) == 0)
+                    /*if (CollisionObject(NextStep(ViewingDirection, NextStep(ViewingDirection, Coordin))) == gotype.Space)
                     {
                         Step(ViewingDirection);
                     }*/
