@@ -23,22 +23,21 @@ namespace ASCII_Dungeon
 
             while(!victory)
             {
-
+                Console.SetCursorPosition(61,19);
                 map.PurgeDeadEnemies();
-                if (!control.KeyStroke()) //warte auf Tasteneingabe
+                if (control.KeyStroke()) //warte auf Tasteneingabe
                 {
-                    continue;
-                }
-                foreach (GameObject testobject in map.GameObjectList)
-                {
-                    if (typeof(Hero) == testobject.GetType());
+                    foreach (GameObject testobject in map.GameObjectList)
                     {
-                        //lass den Held laufen/angreifen/Aktionen durchführen
-                    }
-                    if (typeof(Bird) == testobject.GetType())
-                    {
-                        Bird enemy = (Bird)testobject;
-                        enemy.EnemyControl();
+                        if (typeof(Hero) == testobject.GetType());
+                        {
+                            //lass den Held laufen/angreifen/Aktionen durchführen
+                        }
+                        if (typeof(Bird) == testobject.GetType())
+                        {
+                            Bird enemy = (Bird)testobject;
+                            enemy.EnemyControl();
+                        }
                     }
                 }
             }

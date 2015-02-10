@@ -10,6 +10,7 @@ namespace ASCII_Dungeon
     {
         private Vector2 NewCoordinates;
         private Vector2 OldCoordinates;
+        private bool sword = false;
 
         public Hero(int x, int y) : base(x, y)
         {
@@ -30,13 +31,7 @@ namespace ASCII_Dungeon
             }
             else
             {
-                if (Collision() == 0 || Collision() == 3)
-                {
-                    OldCoordinates = new Vector2(Coordin.X, Coordin.Y);
-                    Coordin.X--;
-                    NewCoordinates = Coordin;
-                    Move(NewCoordinates, OldCoordinates);
-                }
+               Collision(NextStep(ViewingDirection, Coordin));
             }
         }
 
@@ -50,13 +45,7 @@ namespace ASCII_Dungeon
             }
             else
             {
-                if (Collision() == 0 || Collision() == 3)
-                {
-                    OldCoordinates = new Vector2(Coordin.X, Coordin.Y);
-                    Coordin.X++;
-                    NewCoordinates = Coordin;
-                    Move(NewCoordinates, OldCoordinates);
-                }
+                Collision(NextStep(ViewingDirection, Coordin));
             }
         }
 
@@ -70,13 +59,7 @@ namespace ASCII_Dungeon
             }
             else
             {
-                if (Collision() == 0 || Collision() == 3)
-               {
-                    OldCoordinates = new Vector2(Coordin.X, Coordin.Y);
-                    Coordin.Y++;
-                    NewCoordinates = Coordin;
-                    Move(NewCoordinates, OldCoordinates);
-               }
+                Collision(NextStep(ViewingDirection, Coordin));
             }
         }
 
@@ -90,43 +73,44 @@ namespace ASCII_Dungeon
             }
             else
             {
-                if (Collision() == 0 || Collision() == 3)
-                {
-                    OldCoordinates = new Vector2(Coordin.X, Coordin.Y);
-                    Coordin.Y--;
-                    NewCoordinates = Coordin;
-                    Move(NewCoordinates, OldCoordinates);
-                }
+                Collision(NextStep(ViewingDirection, Coordin));
             }
         }
 
         public void strike()
         {
-            switch (ViewingDirection)
+            if (sword == true)
             {
-                case 'N':
-                    //if (CollisionDetecion.isfree(x,y-1) == true)
-                    //show sword at PlayerX, PlayerY-1; upwards.
-                    // else PlaySound error/wallbounce
-                    break;
+                switch (ViewingDirection)
+                {
+                    case 'N':
+                        Console.WriteLine("sword up");
+                        //if (CollisionDetecion.isfree(x,y-1) == true)
+                        //show sword at PlayerX, PlayerY-1; upwards.
+                        // else PlaySound error/wallbounce
+                        break;
 
-                case 'S':
-                    //if (CollisionDetecion.isfree(x+1,y) == true)
-                    //show sword at PlayerX+1, PlayerY; rightwards.
-                    // else PlaySound error/wallbounce
-                    break;
+                    case 'S':
+                        Console.WriteLine("sword down");
+                        //if (CollisionDetecion.isfree(x+1,y) == true)
+                        //show sword at PlayerX+1, PlayerY; rightwards.
+                        // else PlaySound error/wallbounce
+                        break;
 
-                case 'E':
-                    //if (CollisionDetecion.isfree(x,y+1) == true)
-                    //show sword at PlayerX, PlayerY+1; downwards.
-                    // else PlaySound error/wallbounce
-                    break;
+                    case 'E':
+                        Console.WriteLine("sword right");
+                        //if (CollisionDetecion.isfree(x,y+1) == true)
+                        //show sword at PlayerX, PlayerY+1; downwards.
+                        // else PlaySound error/wallbounce
+                        break;
 
-                case 'W':
-                    //if (CollisionDetecion.isfree(x-1,y) == true)
-                    //show sword at PlayerX-1, PlayerY; leftwards.
-                    // else PlaySound error/wallbounce
-                    break;
+                    case 'W':
+                        Console.WriteLine("sword left");
+                        //if (CollisionDetecion.isfree(x-1,y) == true)
+                        //show sword at PlayerX-1, PlayerY; leftwards.
+                        // else PlaySound error/wallbounce
+                        break;
+                }
             }
         }
 
@@ -152,37 +136,44 @@ namespace ASCII_Dungeon
             }
         }
 
-        public int Collision()
+        public void Collision(Vector2 check)
         {
-            GameObject CollisionObj = CollisionObject(NextStep(ViewingDirection, Coordin));
+            gotype CollisionObj = CollisionObject(check);
 
-            if (CollisionObj == null)
+            switch (CollisionObj)
             {
-                throw new ArgumentOutOfRangeException();
-            }
-            if (typeof(Space) == CollisionObj.GetType())
-            {
-                return 0;
-            }
-            if (typeof(Wall) == CollisionObj.GetType())
-            {
-                return 1;
-            }
-            if (typeof(Stone) == CollisionObj.GetType())
-            {
-                return 2;
-            }
-            if (typeof(Sword) == CollisionObj.GetType())
-            {
-                return 3;
-            }
-            if (typeof(Enemy) == CollisionObj.GetType())
-            {
-                return 4;
-            }
-            else 
-            {
-                throw new ArgumentOutOfRangeException();
+                case gotype.Space:
+                    Step(ViewingDirection);
+                    break;
+
+                case gotype.Wall:
+                    break;
+
+                case gotype.Stone:
+                    /*if (Collision(NextStep(ViewingDirection, NextStep(ViewingDirection, Coordin))) == 0)
+                    {
+                        Step(ViewingDirection);
+                    }*/
+                    break;
+
+                case gotype.Enemy:
+                    break;
+
+                case gotype.Sword:
+                    Step(ViewingDirection);
+                    sword = true;
+                    break;
+
+                case gotype.Heart:
+                    Step(ViewingDirection);
+                    break;
+
+                case gotype.Door:
+                    Program.victory = true;
+                    break;
+
+                default:
+                    break;
             }
         }
 
@@ -200,6 +191,28 @@ namespace ASCII_Dungeon
                     return new Vector2(coordinates.X, coordinates.Y - 1);
             }
             return Coordin;
+        }
+
+        protected void Step(char viewingDirection)
+        {
+            OldCoordinates = new Vector2(Coordin.X, Coordin.Y);
+            switch (viewingDirection)
+            {
+                case 'N': // North
+                    Coordin.X--;
+                    break;
+                case 'S': // South
+                    Coordin.X++;
+                    break;
+                case 'E': // East
+                    Coordin.Y++;
+                    break;
+                case 'W': // West
+                    Coordin.Y--;
+                    break;
+            }
+            NewCoordinates = Coordin;
+            Move(NewCoordinates, OldCoordinates);
         }
     }
 }

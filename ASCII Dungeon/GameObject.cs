@@ -11,6 +11,8 @@ namespace ASCII_Dungeon
     {
         public GameObject() : this(0,0) { }
 
+        public gotype type;
+
         public GameObject(int x, int y)
         {
             Coordin = new Vector2(x,y);
@@ -38,19 +40,71 @@ namespace ASCII_Dungeon
             }
         }
 
-        protected GameObject CollisionObject(Vector2 coordinates)       //CollisionDetection
+        protected gotype CollisionObject(Vector2 coordinates)       //CollisionDetection
         {
             Map map = Program.map;
+
             foreach (GameObject go in map.GameObjectList)
             {
                 if (go.Coordin.X == coordinates.X && go.Coordin.Y == coordinates.Y)
                 {
-                    return go;
+                    if (go == null)
+                    {
+                        throw new ArgumentOutOfRangeException();
+                    }
+                    if (typeof(Space) == go.GetType())
+                    {
+                        type = gotype.Space;
+                    }
+                    if (typeof(Wall) == go.GetType())
+                    {
+                        type = gotype.Wall;
+                    }
+                    if (typeof(Stone) == go.GetType())
+                    {
+                        type = gotype.Stone;
+                    }
+                    if (typeof(Enemy) == go.GetType())
+                    {
+                        type = gotype.Enemy;
+                    }
+                    if (typeof(Sword) == go.GetType())
+                    {
+                        type = gotype.Sword;
+                    }
+                    if (typeof(Heart) == go.GetType())
+                    {
+                        type = gotype.Heart;
+                    }
+                    if (typeof(Door) == go.GetType())
+                    {
+                        type = gotype.Door;
+                    }
+                    if (typeof(Hero) == go.GetType())
+                    {
+                        type = gotype.Hero;
+                    }
+
+                    return type;
                 }
             }
-            return null;
+            type = gotype.missingno;
+            return type;
         }
 
 
     }
+
+    public enum gotype
+        { 
+            Space,
+            Wall,
+            Stone,
+            Enemy,
+            Sword,
+            Heart,
+            Door,
+            Hero,
+            missingno
+        };
 }

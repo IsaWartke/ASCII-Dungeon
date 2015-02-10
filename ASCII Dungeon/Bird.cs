@@ -25,55 +25,66 @@ namespace ASCII_Dungeon
 
         public override void EnemyControl()
         {
-            GameObject ColissionObj = CollisionObject(NextStep(ViewingDirection, Coordin));
+            gotype CollisionObj = CollisionObject(NextStep(ViewingDirection, Coordin));
 
-            if (ColissionObj == null)
+            switch (CollisionObj)
             {
-                throw new ArgumentOutOfRangeException();
+                case gotype.Space:
+                        switch (ViewingDirection)
+                        {
+                            case 'E': // East
+                                OldCoordinates = new Vector2(Coordin.X, Coordin.Y);
+                                Coordin.Y++;
+                                NewCoordinates = Coordin;
+                                break;
+                            case 'W': 
+                                OldCoordinates = new Vector2(Coordin.X, Coordin.Y);
+                                Coordin.Y--;
+                                NewCoordinates = Coordin;
+                                break;
+                        }
+                        Move(NewCoordinates, OldCoordinates);
+                    break;
+
+                case gotype.Wall:
+                        Rotation(ViewingDirection);
+                        Render(Coordin, Coordin, ObjectAppearance);
+                    break;
+
+                case gotype.Stone:
+                        Rotation(ViewingDirection);
+                        Render(Coordin, Coordin, ObjectAppearance);
+                    break;
+
+                case gotype.Enemy:
+                        Rotation(ViewingDirection);
+                        Render(Coordin, Coordin, ObjectAppearance);
+                    break;
+
+                case gotype.Sword:
+                        Rotation(ViewingDirection);
+                        Render(Coordin, Coordin, ObjectAppearance);
+                    break;
+
+                case gotype.Heart:
+                        Rotation(ViewingDirection);
+                        Render(Coordin, Coordin, ObjectAppearance);
+                    break;
+
+                case gotype.Door:
+                        Rotation(ViewingDirection);
+                        Render(Coordin, Coordin, ObjectAppearance);
+                    break;
+
+                default:
+                    break;
             }
 
-            if (typeof(Space) == ColissionObj.GetType())
-            {
-                switch (ViewingDirection)
-                {
-                    case 'E': // East
-                        OldCoordinates = new Vector2(Coordin.X, Coordin.Y);
-                        Coordin.Y++;
-                        NewCoordinates = Coordin;
-                        break;
-                    case 'W': 
-                        OldCoordinates = new Vector2(Coordin.X, Coordin.Y);
-                        Coordin.Y--;
-                        NewCoordinates = Coordin;
-                        break;
-                }
-                Move(NewCoordinates, OldCoordinates);
-            }
-            if (typeof(Stone) == ColissionObj.GetType())
-            {
-                Rotation(ViewingDirection);
-                Render(Coordin, Coordin, ObjectAppearance);
-            }
-            if (typeof(Sword) == ColissionObj.GetType())
-            {
-                Rotation(ViewingDirection);
-                Render(Coordin, Coordin, ObjectAppearance);
-            }
-            if (typeof( Wall) == ColissionObj.GetType())
-            {
-                Rotation(ViewingDirection);
-                Render(Coordin, Coordin, ObjectAppearance);
-            }
-            if (typeof(Enemy) == ColissionObj.GetType())
-            {
-                Rotation(ViewingDirection);
-                Render(Coordin, Coordin, ObjectAppearance);
-            }
-            if (typeof(Hero) == ColissionObj.GetType())//Character durch Held ersetzen
+            /*if (typeof(Hero) == ColissionObj.GetType())//Character durch Held ersetzen
             {
                 Hero hero = (Hero)ColissionObj;
                 hero.IsAttacked(AttackPoints);
-            }
+            }*/
         }
 
 
