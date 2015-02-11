@@ -12,7 +12,7 @@ namespace ASCII_Dungeon
         {
             if (Console.KeyAvailable)
             {
-                ConsoleKeyInfo key = Console.ReadKey();
+                ConsoleKeyInfo key = Console.ReadKey(true);
 
                 if (key.Key == ConsoleKey.UpArrow)
                 {
