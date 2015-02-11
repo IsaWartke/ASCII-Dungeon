@@ -151,10 +151,11 @@ namespace ASCII_Dungeon
                     break;
 
                 case gotype.Stone:
-                    /*if (CollisionObject(NextStep(ViewingDirection, NextStep(ViewingDirection, Coordin))) == gotype.Space)
+                    if (CollisionObject(NextStep(ViewingDirection, NextStep(ViewingDirection, Coordin))) == gotype.Space)
                     {
+                        //Stone.Render(check, check, SwordAppearance);
                         Step(ViewingDirection);
-                    }*/
+                    }
                     break;
 
                 case gotype.Enemy:

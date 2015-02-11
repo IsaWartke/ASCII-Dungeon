@@ -44,6 +44,8 @@ namespace ASCII_Dungeon
         {
             Map map = Program.map;
 
+            List<gotype> foundObjects = new List<gotype>();
+
             foreach (GameObject go in map.GameObjectList)
             {
                 if (go.Coordin.X == coordinates.X && go.Coordin.Y == coordinates.Y)
@@ -84,15 +86,15 @@ namespace ASCII_Dungeon
                     {
                         type = gotype.Hero;
                     }
-
-                    return type;
+                    foundObjects.Add(type);
                 }
             }
-            type = gotype.missingno;
-            return type;
+
+            if (foundObjects.Count == 1)
+                return foundObjects[0];
+
+            return foundObjects.Where(g => g != gotype.Space).First();
         }
-
-
     }
 
     public enum gotype
