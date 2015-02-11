@@ -11,6 +11,8 @@ namespace ASCII_Dungeon
         private Vector2 NewCoordinates;
         private Vector2 OldCoordinates;
         private bool sword = false;
+        private char SwordAppearance = '┼';
+        
 
         public Hero(int x, int y) : base(x, y)
         {
@@ -84,31 +86,23 @@ namespace ASCII_Dungeon
                 switch (ViewingDirection)
                 {
                     case 'N':
-                        Console.WriteLine("sword up");
-                        //if (CollisionDetecion.isfree(x,y-1) == true)
-                        //show sword at PlayerX, PlayerY-1; upwards.
-                        // else PlaySound error/wallbounce
+                        //Console.WriteLine("sword up");
+                        SwordCollision(NextStep(ViewingDirection, Coordin));
                         break;
 
                     case 'S':
-                        Console.WriteLine("sword down");
-                        //if (CollisionDetecion.isfree(x+1,y) == true)
-                        //show sword at PlayerX+1, PlayerY; rightwards.
-                        // else PlaySound error/wallbounce
+                        //Console.WriteLine("sword down");
+                        SwordCollision(NextStep(ViewingDirection, Coordin));
                         break;
 
                     case 'E':
-                        Console.WriteLine("sword right");
-                        //if (CollisionDetecion.isfree(x,y+1) == true)
-                        //show sword at PlayerX, PlayerY+1; downwards.
-                        // else PlaySound error/wallbounce
+                        //Console.WriteLine("sword right");
+                        SwordCollision(NextStep(ViewingDirection, Coordin));
                         break;
 
                     case 'W':
-                        Console.WriteLine("sword left");
-                        //if (CollisionDetecion.isfree(x-1,y) == true)
-                        //show sword at PlayerX-1, PlayerY; leftwards.
-                        // else PlaySound error/wallbounce
+                        //Console.WriteLine("sword left");
+                        SwordCollision(NextStep(ViewingDirection, Coordin));
                         break;
                 }
             }
@@ -166,10 +160,47 @@ namespace ASCII_Dungeon
 
                 case gotype.Heart:
                     Step(ViewingDirection);
+                    LifePoints += 1;
                     break;
 
                 case gotype.Door:
                     Program.victory = true;
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        public void SwordCollision(Vector2 check)
+        {
+            gotype swordcoll = CollisionObject(check);
+
+            switch (swordcoll)
+            {
+                case gotype.Space:
+                    // Render(check, check, SwordAppearance);
+                    break;
+
+                case gotype.Wall:
+                    // play sound:bounceoff;
+                    break;
+
+                case gotype.Stone:
+                    // play sound:bounceoff;
+                    break;
+
+                case gotype.Enemy:
+                    // Render();
+                    // Enemy.LifePoints -= Attackpoints;
+                    break;
+
+                case gotype.Heart:
+                    // LifePoints += 1;
+                    break;
+
+                case gotype.Door:
+                    // play sound:bounceoff;
                     break;
 
                 default:
