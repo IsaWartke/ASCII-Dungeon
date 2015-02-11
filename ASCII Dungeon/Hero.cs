@@ -153,7 +153,9 @@ namespace ASCII_Dungeon
                 case gotype.Stone:
                     if (CollisionObject(NextStep(ViewingDirection, NextStep(ViewingDirection, Coordin))) == gotype.Space)
                     {
-                        //Stone.Render(check, check, SwordAppearance);
+                        int x = NextStep(ViewingDirection, NextStep(ViewingDirection, Coordin)).X;
+                        int y = NextStep(ViewingDirection, NextStep(ViewingDirection, Coordin)).Y;
+                        Program.map.InitGameObject('♦', x, y);
                         Step(ViewingDirection);
                     }
                     break;
