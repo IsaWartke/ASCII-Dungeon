@@ -98,12 +98,13 @@ namespace ASCII_Dungeon
                     break;
 
                 case '►':
+                    hero = new Hero(x, y);
+                    GameObjectList.Add(hero);
                     Space spaceHero = new Space(x, y);
                     spaceHero.Render(myVector, myVector, spaceHero.ObjectAppearance);
                     GameObjectList.Add(spaceHero);
-                    hero = new Hero(x, y);
                     hero.Render(myVector, myVector, hero.ObjectAppearance);
-                    GameObjectList.Add(hero);
+                    
                     break;
 
                 case '>':
