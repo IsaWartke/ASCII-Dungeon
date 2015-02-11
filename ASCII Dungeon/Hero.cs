@@ -153,9 +153,22 @@ namespace ASCII_Dungeon
                 case gotype.Stone:
                     if (CollisionObject(NextStep(ViewingDirection, NextStep(ViewingDirection, Coordin))) == gotype.Space)
                     {
-                        int x = NextStep(ViewingDirection, NextStep(ViewingDirection, Coordin)).X;
-                        int y = NextStep(ViewingDirection, NextStep(ViewingDirection, Coordin)).Y;
-                        Program.map.InitGameObject('♦', x, y);
+                        //Program.map.InitGameObject('♦', NextStep(ViewingDirection, NextStep(ViewingDirection, Coordin)).X, NextStep(ViewingDirection, NextStep(ViewingDirection, Coordin)).Y);
+                        //Program.map.InitGameObject(' ', NextStep(ViewingDirection, Coordin).X, NextStep(ViewingDirection, Coordin).Y);
+
+                        //Get GameObject Stone(NextStep(ViewingDirection, Coordin));
+                        //Set GameObject Stone(NextStep(ViewingDirection, NextStep(ViewingDirection, Coordin)));
+
+                        GameObject stone = GetGameObject(NextStep(ViewingDirection, Coordin));
+                        stone.Coordin.X = NextStep(ViewingDirection, NextStep(ViewingDirection, Coordin)).X;
+                        stone.Coordin.Y = NextStep(ViewingDirection, NextStep(ViewingDirection, Coordin)).Y;
+                        stone.Render(NextStep(ViewingDirection, Coordin), NextStep(ViewingDirection, NextStep(ViewingDirection, Coordin)), '♦');
+
+                        GameObject space = GetGameObject(NextStep(ViewingDirection, NextStep(ViewingDirection, Coordin)));
+                        space.Coordin.X = NextStep(ViewingDirection, Coordin).X;
+                        space.Coordin.Y = NextStep(ViewingDirection, Coordin).Y;
+                        //space.Render(NextStep(ViewingDirection, Coordin), NextStep(ViewingDirection, NextStep(ViewingDirection, Coordin)), ' ');
+
                         Step(ViewingDirection);
                     }
                     break;

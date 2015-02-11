@@ -40,6 +40,27 @@ namespace ASCII_Dungeon
             }
         }
 
+        protected GameObject GetGameObject(Vector2 coordinates)
+        {
+            Map map = Program.map;
+
+            foreach (GameObject go in map.GameObjectList)
+            {
+                if (go.Coordin.X == coordinates.X && go.Coordin.Y == coordinates.Y)
+                {
+                    if (go == null)
+                    {
+                        throw new ArgumentOutOfRangeException();
+                    }
+                    else
+                    {
+                        return go;
+                    }
+                }
+            }
+            return null;
+        }
+
         protected gotype CollisionObject(Vector2 coordinates)       //CollisionDetection
         {
             Map map = Program.map;
