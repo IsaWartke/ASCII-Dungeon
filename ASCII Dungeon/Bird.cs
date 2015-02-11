@@ -29,7 +29,6 @@ namespace ASCII_Dungeon
          * }
         */
 
-
         public override void EnemyControl()
         {
             gotype CollisionObj = CollisionObject(NextStep(ViewingDirection, Coordin));
