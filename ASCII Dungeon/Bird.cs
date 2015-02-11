@@ -22,6 +22,13 @@ namespace ASCII_Dungeon
             //Render(Coordin, Coordin, 'X');
         }
 
+        /*
+        if (LifePoints <= 0)
+         * {
+         *  GameObject.this.destroy;
+         * }
+        */
+
 
         public override void EnemyControl()
         {
@@ -76,15 +83,19 @@ namespace ASCII_Dungeon
                         Render(Coordin, Coordin, ObjectAppearance);
                     break;
 
+                case gotype.Hero:
+                        //Hero.Lifepoints -= AttackPoints;
+                        Rotation(ViewingDirection);
+                        Render(Coordin, Coordin, ObjectAppearance);
+
+                        //Hero hero = (Hero)CollisionObj;
+                        //hero.IsAttacked(AttackPoints);
+
+                    break;
+
                 default:
                     break;
             }
-
-            /*if (typeof(Hero) == ColissionObj.GetType())//Character durch Held ersetzen
-            {
-                Hero hero = (Hero)ColissionObj;
-                hero.IsAttacked(AttackPoints);
-            }*/
         }
 
 

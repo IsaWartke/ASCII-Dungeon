@@ -23,6 +23,13 @@ namespace ASCII_Dungeon
             ObjectAppearance = '►';
         }
 
+        /*
+        if (LifePoints <= 0)
+         * {
+         *  GameObject.this.destroy;
+         * }
+        */
+
         public void upwards()
         {
             if (ViewingDirection != 'N')
@@ -151,6 +158,8 @@ namespace ASCII_Dungeon
                     break;
 
                 case gotype.Enemy:
+                    // play sound:hurt;
+                    //LifePoints -= 1;
                     break;
 
                 case gotype.Sword:
