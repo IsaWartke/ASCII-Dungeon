@@ -132,5 +132,16 @@ namespace ASCII_Dungeon
                 }
             }
         }
+
+        public void DestroyGameObject(Vector2 pos)
+        {
+            for (int i = GameObjectList.Count - 1; i >= 0; i--)
+            {
+                if (GameObjectList[i].Coordin == pos && GameObjectList[i] is Stone)
+                {
+                    GameObjectList.RemoveAt(i);
+                }
+            }
+        }
     }
 }

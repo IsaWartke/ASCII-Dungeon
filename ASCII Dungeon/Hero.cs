@@ -154,7 +154,9 @@ namespace ASCII_Dungeon
                     if (CollisionObject(NextStep(ViewingDirection, NextStep(ViewingDirection, Coordin))) == gotype.Space)
                     {
                         Program.map.InitGameObject('♦', NextStep(ViewingDirection, NextStep(ViewingDirection, Coordin)).X, NextStep(ViewingDirection, NextStep(ViewingDirection, Coordin)).Y);
-                        Program.map.InitGameObject(' ', NextStep(ViewingDirection, Coordin).X, NextStep(ViewingDirection, Coordin).Y);
+                        Program.map.DestroyGameObject(NextStep(ViewingDirection, Coordin));
+
+                        //Program.map.InitGameObject(' ', NextStep(ViewingDirection, Coordin).X, NextStep(ViewingDirection, Coordin).Y);
 
                         //Get GameObject Stone(NextStep(ViewingDirection, Coordin));
                         //Set GameObject Stone(NextStep(ViewingDirection, NextStep(ViewingDirection, Coordin)));
