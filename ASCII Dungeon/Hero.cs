@@ -10,15 +10,14 @@ namespace ASCII_Dungeon
     {
         private Vector2 NewCoordinates;
         private Vector2 OldCoordinates;
-        private bool sword = false;
-        private char SwordAppearance = '┼';
+        private bool key = false;
         
 
         public Hero(int x, int y) : base(x, y)
         {
             Appearance = new char[] { '►', '◄', '▲', '▼' };
             AttackPoints = 1;
-            LifePoints = 1;
+            LifePoints = 2;
             ViewingDirection = 'E';
             ObjectAppearance = '►';
         }
@@ -86,7 +85,7 @@ namespace ASCII_Dungeon
             }
         }
 
-        public void strike()
+        /*public void strike()
         {
             if (sword == true)
             {
@@ -113,7 +112,7 @@ namespace ASCII_Dungeon
                         break;
                 }
             }
-        }
+        }*/
 
         protected void Rotation(char ViewingDirection)
         {
@@ -151,10 +150,10 @@ namespace ASCII_Dungeon
                     break;
 
                 case gotype.Stone:
-                    if (CollisionObject(NextStep(ViewingDirection, NextStep(ViewingDirection, Coordin))) == gotype.Space)
+                    if (CollisionObject(NextStep(ViewingDirection, check)) == gotype.Space)
                     {
-                        Program.map.InitGameObject('♦', NextStep(ViewingDirection, NextStep(ViewingDirection, Coordin)).X, NextStep(ViewingDirection, NextStep(ViewingDirection, Coordin)).Y);
-                        Program.map.DestroyGameObject(NextStep(ViewingDirection, Coordin));
+                        Program.map.InitGameObject('♦', NextStep(ViewingDirection, check).X, NextStep(ViewingDirection, check).Y);
+                        Program.map.DestroyGameObject(check);
                         
                         Step(ViewingDirection);
                     }
@@ -167,20 +166,28 @@ namespace ASCII_Dungeon
 
                 case gotype.Sword:
                     Step(ViewingDirection);
-                    Program.map.DestroyGameObject(NextStep(ViewingDirection, Coordin));
-                    sword = true;
+                    Program.map.DestroyGameObject(check);
+                    key = true;
                     break;
 
                 case gotype.Heart:
                     Step(ViewingDirection);
-                    Program.map.DestroyGameObject(NextStep(ViewingDirection, Coordin));
+                    Program.map.DestroyGameObject(check);
                     LifePoints += 1;
                     break;
 
                 case gotype.Door:
-                    Console.SetCursorPosition(0, 20);
-                    Console.WriteLine("Victory!");
-                    Program.victory = true;
+                    if (key == true)
+                    {
+                        Console.SetCursorPosition(0, 20);
+                        Console.WriteLine("Victory!");
+                        Program.victory = true;
+                    }
+                    else 
+                    {
+                        Console.SetCursorPosition(0, 20);
+                        Console.WriteLine("Du brauchst den Schlüssel -> ┼ !");
+                    }
                     break;
 
                 default:
@@ -195,7 +202,7 @@ namespace ASCII_Dungeon
             switch (swordcoll)
             {
                 case gotype.Space:
-                    // Render(check, check, SwordAppearance);
+                    Program.map.InitGameObject('┼', check.X, check.Y);
                     break;
 
                 case gotype.Wall:

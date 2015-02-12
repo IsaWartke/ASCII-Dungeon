@@ -42,12 +42,12 @@ namespace ASCII_Dungeon
                     return true;
                 }
 
-                if (key.Key == ConsoleKey.Spacebar)
+                /*if (key.Key == ConsoleKey.Spacebar)
                 {
                     Program.map.hero.strike();
                     //Console.WriteLine("Im a spacebar!");
                     return true;
-                } 
+                } */
                 return false;                 
             }
             return false;
