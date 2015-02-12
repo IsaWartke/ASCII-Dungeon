@@ -110,6 +110,11 @@ namespace ASCII_Dungeon
                     foundObjects.Add(type);
                 }
             }
+            if (foundObjects.Count == 0)
+            {
+                Program.map.InitGameObject(' ', coordinates.X, coordinates.Y);
+                return type = gotype.Space;
+            }
 
             if (foundObjects.Count == 1)
                 return foundObjects[0];

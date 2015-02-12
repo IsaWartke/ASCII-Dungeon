@@ -137,8 +137,11 @@ namespace ASCII_Dungeon
         {
             for (int i = GameObjectList.Count - 1; i >= 0; i--)
             {
-                if (GameObjectList[i].Coordin == pos && GameObjectList[i] is Stone)
+                if (GameObjectList[i].Coordin.Equals(pos))
                 {
+                    //Space space = new Space(GameObjectList[i].Coordin);
+                    //GameObjectList.Add(space);
+                    //space.Render(GameObjectList[i].Coordin, GameObjectList[i].Coordin, space.ObjectAppearance); 
                     GameObjectList.RemoveAt(i);
                 }
             }
