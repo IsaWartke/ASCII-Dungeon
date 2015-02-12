@@ -10,11 +10,12 @@ namespace ASCII_Dungeon
     {
         private Vector2 OldCoordinates;
         private Vector2 NewCoordinates;
-        
 
-        public Bird(int x, int y) : base(x,y) 
+
+        public Bird(int x, int y)
+            : base(x, y)
         {
-            Appearance = new char[]{ '>', '<', '-', '-' };
+            Appearance = new char[] { '>', '<', '-', '-' };
             AttackPoints = 1;
             LifePoints = 1;
             ViewingDirection = 'E';
@@ -36,60 +37,54 @@ namespace ASCII_Dungeon
             switch (CollisionObj)
             {
                 case gotype.Space:
-                        switch (ViewingDirection)
-                        {
-                            case 'E': // East
-                                OldCoordinates = new Vector2(Coordin.X, Coordin.Y);
-                                Coordin.Y++;
-                                NewCoordinates = Coordin;
-                                break;
-                            case 'W': 
-                                OldCoordinates = new Vector2(Coordin.X, Coordin.Y);
-                                Coordin.Y--;
-                                NewCoordinates = Coordin;
-                                break;
-                        }
-                        Move(NewCoordinates, OldCoordinates);
+                    switch (ViewingDirection)
+                    {
+                        case 'E': // East
+                            OldCoordinates = new Vector2(Coordin.X, Coordin.Y);
+                            Coordin.Y++;
+                            NewCoordinates = Coordin;
+                            break;
+                        case 'W':
+                            OldCoordinates = new Vector2(Coordin.X, Coordin.Y);
+                            Coordin.Y--;
+                            NewCoordinates = Coordin;
+                            break;
+                    }
+                    Move(NewCoordinates, OldCoordinates);
                     break;
 
                 case gotype.Wall:
-                        Rotation(ViewingDirection);
-                        Render(Coordin, Coordin, ObjectAppearance);
+                    Rotation(ViewingDirection);
+                    Render(Coordin, Coordin, ObjectAppearance);
                     break;
 
                 case gotype.Stone:
-                        Rotation(ViewingDirection);
-                        Render(Coordin, Coordin, ObjectAppearance);
+                    Rotation(ViewingDirection);
+                    Render(Coordin, Coordin, ObjectAppearance);
                     break;
 
                 case gotype.Enemy:
-                        Rotation(ViewingDirection);
-                        Render(Coordin, Coordin, ObjectAppearance);
+                    Rotation(ViewingDirection);
+                    Render(Coordin, Coordin, ObjectAppearance);
                     break;
 
                 case gotype.Sword:
-                        Rotation(ViewingDirection);
-                        Render(Coordin, Coordin, ObjectAppearance);
+                    Rotation(ViewingDirection);
+                    Render(Coordin, Coordin, ObjectAppearance);
                     break;
 
                 case gotype.Heart:
-                        Rotation(ViewingDirection);
-                        Render(Coordin, Coordin, ObjectAppearance);
+                    Rotation(ViewingDirection);
+                    Render(Coordin, Coordin, ObjectAppearance);
                     break;
 
                 case gotype.Door:
-                        Rotation(ViewingDirection);
-                        Render(Coordin, Coordin, ObjectAppearance);
+                    Rotation(ViewingDirection);
+                    Render(Coordin, Coordin, ObjectAppearance);
                     break;
 
                 case gotype.Hero:
-                        //Hero.Lifepoints -= AttackPoints;
-                        Rotation(ViewingDirection);
-                        Render(Coordin, Coordin, ObjectAppearance);
-
-                        //Hero hero = (Hero)CollisionObj;
-                        //hero.IsAttacked(AttackPoints);
-
+                    Attack((Hero)GetGameObject(NextStep(ViewingDirection, Coordin)));
                     break;
 
                 default:
@@ -98,6 +93,10 @@ namespace ASCII_Dungeon
         }
 
 
+        protected void Attack(Hero hero)
+        {
+            hero.IsAttacked(AttackPoints);
+        }
 
         protected Vector2 NextStep(char viewingDirection, Vector2 coordinates)
         {

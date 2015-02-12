@@ -44,6 +44,11 @@ namespace ASCII_Dungeon
         {
             Map map = Program.map;
 
+            if (map.hero.Coordin.X == coordinates.X && map.hero.Coordin.Y == coordinates.Y)
+            {
+                return map.hero;
+            }
+
             foreach (GameObject go in map.GameObjectList)
             {
                 if (go.Coordin.X == coordinates.X && go.Coordin.Y == coordinates.Y)
