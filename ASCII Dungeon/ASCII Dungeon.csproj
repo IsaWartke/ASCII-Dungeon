@@ -78,6 +78,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Maps\Mapalt.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Maps\Map.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

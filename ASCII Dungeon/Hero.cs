@@ -167,11 +167,13 @@ namespace ASCII_Dungeon
 
                 case gotype.Sword:
                     Step(ViewingDirection);
+                    Program.map.DestroyGameObject(NextStep(ViewingDirection, Coordin));
                     sword = true;
                     break;
 
                 case gotype.Heart:
                     Step(ViewingDirection);
+                    Program.map.DestroyGameObject(NextStep(ViewingDirection, Coordin));
                     LifePoints += 1;
                     break;
 
