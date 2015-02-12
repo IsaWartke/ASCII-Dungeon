@@ -178,6 +178,8 @@ namespace ASCII_Dungeon
                     break;
 
                 case gotype.Door:
+                    Console.SetCursorPosition(0, 20);
+                    Console.WriteLine("Victory!");
                     Program.victory = true;
                     break;
 
